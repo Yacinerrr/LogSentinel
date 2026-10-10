@@ -1,44 +1,44 @@
-EventId,target_label
-E1,System Notification
-E2,System Notification
-E3,System Notification
-E4,System Notification
-E5,System Notification
-E6,System Notification
-E7,System Notification
-E8,System Notification
-E9,System Notification
-E10,Resource Usage
-E11,System Notification
-E12,System Notification
-E13,System Notification
-E14,System Notification
-E15,System Notification
-E16,Resource Usage
-E17,Resource Usage
-E18,Resource Usage
-E19,System Notification
-E20,System Notification
-E21,System Notification
-E22,System Notification
-E23,System Notification
-E24,HTTP Status
-E25,HTTP Status
-E26,HTTP Status
-E27,System Notification
-E28,System Notification
-E29,System Notification
-E30,System Notification
-E31,System Notification
-E32,Resource Usage
-E33,Error
-E34,System Notification
-E35,System Notification
-E36,System Notification
-E37,System Notification
-E38,System Notification
-E39,System Notification
-E40,Error
-E41,Resource Usage
-E42,Error
-E43,Error
+EventId,EventTemplate,target_label
+E1,"[instance: <*>] Attempting claim: memory <*> MB, disk <*> GB, vcpus <*> CPU",System Notification
+E2,[instance: <*>] Claim successful,System Notification
+E3,[instance: <*>] Creating image,System Notification
+E4,[instance: <*>] Deleting instance files <*>,System Notification
+E5,[instance: <*>] Deletion of <*> complete,System Notification
+E6,"[instance: <*>] disk limit not specified, defaulting to unlimited",System Notification
+E7,[instance: <*>] During sync_power_state the instance has a pending task (spawning). Skip.,System Notification
+E8,[instance: <*>] Instance destroyed successfully.,System Notification
+E9,[instance: <*>] Instance spawned successfully.,System Notification
+E10,"[instance: <*>] memory limit: <*>.<*> MB, free: <*>.<*> MB",Resource Usage
+E11,[instance: <*>] Terminating instance,System Notification
+E12,[instance: <*>] Took <*>.<*> seconds to build instance.,System Notification
+E13,[instance: <*>] Took <*>.<*> seconds to deallocate network for instance.,System Notification
+E14,[instance: <*>] Took <*>.<*> seconds to destroy the instance on the hypervisor.,System Notification
+E15,[instance: <*>] Took <*>.<*> seconds to spawn the instance on the hypervisor.,System Notification
+E16,"[instance: <*>] Total disk: <*> GB, used: <*>.<*> GB",Resource Usage
+E17,"[instance: <*>] Total memory: <*> MB, used: <*>.<*> MB",Resource Usage
+E18,"[instance: <*>] Total vcpu: <*> VCPU, used: <*>.<*> VCPU",Resource Usage
+E19,"[instance: <*>] vcpu limit not specified, defaulting to unlimited",System Notification
+E20,[instance: <*>] VM Paused (Lifecycle Event),System Notification
+E21,[instance: <*>] VM Resumed (Lifecycle Event),System Notification
+E22,[instance: <*>] VM Started (Lifecycle Event),System Notification
+E23,[instance: <*>] VM Stopped (Lifecycle Event),System Notification
+E24,"<*> ""DELETE <*>"" status: <*> len: <*> time: <*>.<*>",HTTP Status
+E25,"<*> ""GET <*>"" status: <*> len: <*> time: <*>.<*>",HTTP Status
+E26,"<*> ""POST <*>"" status: <*> len: <*> time: <*>.<*>",HTTP Status
+E27,Active base files: <*>,System Notification
+E28,Auditing locally available compute resources for node <*>,System Notification
+E29,Base or swap file too young to remove: <*>,System Notification
+E30,Compute_service record updated for <*>,System Notification
+E31,Creating event network-vif-plugged:<*>-<*>-<*>-<*>-<*> for instance <*>,System Notification
+E32,Final resource view: name=<*> phys_ram=<*> used_ram=<*> phys_disk=<*> used_disk=<*> total_vcpus=<*> used_vcpus=<*> pci_stats=[],Resource Usage
+E33,HTTP exception thrown: No instances found for any event,Error
+E34,image <*> at (<*>): checking,System Notification
+E35,"image <*> at (<*>): in use: on this node <*> local, <*> on other nodes sharing this instance storage",System Notification
+E36,Removable base files: <*>,System Notification
+E37,Removing base or swap file: <*>,System Notification
+E38,Running instance usage audit for host <*> from <*>-<*>-<*> <*>:<*>:<*> to <*>-<*>-<*> <*>:<*>:<*>. <*> instances.,System Notification
+E39,Successfully synced instances from host '<*>'.,System Notification
+E40,The instance sync for host '<*>' did not match. Re-created its InstanceList.,Error
+E41,"Total usable vcpus: <*>, total allocated vcpus: <*>",Resource Usage
+E42,Unknown base file: <*>,Error
+E43,"While synchronizing instance power states, found <*> instances in the database and <*> instances on the hypervisor.",Error

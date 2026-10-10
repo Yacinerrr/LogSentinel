@@ -1,28 +1,28 @@
-EventId,target_label
-E1,User Action
-E2,System Notification
-E3,Security Alert
-E4,Security Alert
-E5,Security Alert
-E6,Security Alert
-E7,Security Alert
-E8,Security Alert
-E9,Security Alert
-E10,Security Alert
-E11,Error
-E12,Security Alert
-E13,Security Alert
-E14,Security Alert
-E15,Security Alert
-E16,Security Alert
-E17,Security Alert
-E18,Security Alert
-E19,Security Alert
-E20,Security Alert
-E21,Security Alert
-E22,System Notification
-E23,User Action
-E24,System Notification
-E25,User Action
-E26,User Action
-E27,Security Alert
+EventId,EventTemplate,target_label
+E1,Accepted password for <*> from <*> port <*> ssh2,User Action
+E2,Connection closed by <*> [preauth],System Notification
+E3,Did not receive identification string from <*>,Security Alert
+E4,Disconnecting: Too many authentication failures for admin [preauth],Security Alert
+E5,Disconnecting: Too many authentication failures for root [preauth],Security Alert
+E6,error: Received disconnect from <*>: <*>: com.jcraft.jsch.JSchException: Auth fail [preauth],Security Alert
+E7,error: Received disconnect from <*>: <*>: No more user authentication methods available. [preauth],Security Alert
+E8,Failed none for invalid user <*> from <*> port <*> ssh2,Security Alert
+E9,Failed password for <*> from <*> port <*> ssh2,Security Alert
+E10,Failed password for invalid user <*> from <*> port <*> ssh2,Security Alert
+E11,fatal: Write failed: Connection reset by peer [preauth],Error
+E12,input_userauth_request: invalid user <*> [preauth],Security Alert
+E13,Invalid user <*> from <*>,Security Alert
+E14,message repeated <*> times: [ Failed password for root from <*> port <*>],Security Alert
+E15,PAM <*> more authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*>,Security Alert
+E16,PAM <*> more authentication failures; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*>,Security Alert
+E17,PAM <*> more authentication failures; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*>  user=root,Security Alert
+E18,PAM service(sshd) ignoring max retries; <*> > <*>,Security Alert
+E19,pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*>,Security Alert
+E20,pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>,Security Alert
+E21,pam_unix(sshd:auth): check pass; user unknown,Security Alert
+E22,pam_unix(sshd:session): session closed for user <*>,System Notification
+E23,pam_unix(sshd:session): session opened for user <*> by (uid=<*>),User Action
+E24,Received disconnect from <*>: <*>: Bye Bye [preauth],System Notification
+E25,Received disconnect from <*>: <*>: Closed due to user request. [preauth],User Action
+E26,Received disconnect from <*>: <*>: disconnected by user,User Action
+E27,reverse mapping checking getaddrinfo for <*> [<*>] failed - POSSIBLE BREAK-IN ATTEMPT!,Security Alert
