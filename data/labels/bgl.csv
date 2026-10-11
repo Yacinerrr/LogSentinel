@@ -3,3 +3,7 @@ rts: kernel terminated for reason <*>,Critical Error
 rts panic! - stopping execution,Critical Error
 Error: unable to mount filesystem,Critical Error
 kernel panic,Critical Error
+data TLB error interrupt,Critical Error
+data storage interrupt,Critical Error
+machine check interrupt,Critical Error
+Microloader Assertion,Critical Error
