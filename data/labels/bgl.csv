@@ -1,4 +1,5 @@
-EventId,EventTemplate,target_label
-E108,rts panic! - stopping execution,Critical Error
-E111,rts: kernel terminated for reason <*>,Critical Error
-E112,"rts: kernel terminated for reason <*>: bad message header: invalid cpu, type=<*>, cpu=<*>, index=<*>, total=<*>",Critical Error
+﻿EventTemplate,Label
+rts: kernel terminated for reason <*>,Critical Error
+rts panic! - stopping execution,Critical Error
+Error: unable to mount filesystem,Critical Error
+kernel panic,Critical Error
