@@ -1,0 +1,14 @@
+name: Task
+description: A unit of work from docs/TASKS.md
+labels: []
+body:
+  - type: input
+    id: task_id
+    attributes: { label: Task ID, placeholder: "B1.1" }
+  - type: textarea
+    id: goal
+    attributes: { label: Goal / Done when }
+    validations: { required: true }
+  - type: input
+    id: estimate
+    attributes: { label: Estimate (hours) }

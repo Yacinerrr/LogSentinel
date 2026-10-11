@@ -1,0 +1,21 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    ports: ["8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    volumes: ["./data:/srv/data", "./models:/srv/models"]
+  dashboard:
+    image: python:3.11-slim
+    working_dir: /srv
+    volumes: [".:/srv"]
+    environment: [API_URL=http://api:8000, "API_KEY=${DASHBOARD_API_KEY:-change-me-dev-key}"]
+    command: sh -c "pip install -q -r requirements-dashboard.txt && streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0"
+    ports: ["8501:8501"]
+    depends_on:
+      api:
+        condition: service_healthy

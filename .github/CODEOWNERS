@@ -1,0 +1,5 @@
+# Replace with the real GitHub usernames (keep both on the same line).
+# Both devs own everything on purpose: GitHub never asks the PR author to review
+# their own PR, so the OTHER dev is auto-requested and their approval satisfies
+# "Require review from Code Owners". Who owns which folder is documented in docs/TASKS.md.
+   * @Yacinerrr @Omar992-coder
