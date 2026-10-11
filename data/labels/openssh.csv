@@ -21,7 +21,7 @@ E19,pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=s
 E20,pam_unix(sshd:auth): authentication failure; logname= uid=<*> euid=<*> tty=ssh ruser= rhost=<*> user=<*>,Security Alert
 E21,pam_unix(sshd:auth): check pass; user unknown,Security Alert
 E22,pam_unix(sshd:session): session closed for user <*>,System Notification
-E23,pam_unix(sshd:session): session opened for user <*> by (uid=<*>),User Action
+E23,pam_unix(sshd:session): session opened for user <*> by (uid=<*>),System Notification
 E24,Received disconnect from <*>: <*>: Bye Bye [preauth],System Notification
 E25,Received disconnect from <*>: <*>: Closed due to user request. [preauth],User Action
 E26,Received disconnect from <*>: <*>: disconnected by user,User Action

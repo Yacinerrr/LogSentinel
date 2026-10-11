@@ -79,3 +79,41 @@ E77,PCI: Invalid ACPI-PCI IRQ routing table,Error
 E78,"PCI: PCI BIOS revision <*>.<*> entry at <*>, last bus=<*>",System Notification
 E79,PCI: Probing PCI hardware,System Notification
 E80,PCI: Probing PCI hardware (bus <*>),System Notification
+E81,PCI: Using configuration type <*>,System Notification
+E82,PCI: Using IRQ router PIIX/ICH [<*>/<*>] at <*>,System Notification
+E83,pci_hotplug: PCI Hot Plug PCI Core version: <*>.<*>,System Notification
+E84,PID hash table entries: 512 (order <*>: <*> bytes),System Notification
+E85,portmap startup succeeded,System Notification
+E86,POSIX conformance testing by UNIFIX,System Notification
+E87,Real Time Clock Driver v<*>.<*>,System Notification
+E88,Received SNMP packet(s) from <*>,System Notification
+E89,removing device node '/udev/<*>',System Notification
+E90,restart.,System Notification
+E91,ROOT LOGIN ON tty2,User Action
+E92,rpc.idmapd startup succeeded,System Notification
+E93,rpc.statd startup succeeded,System Notification
+E94,sdpd startup succeeded,System Notification
+E95,sdpd v<*>.<*> started,System Notification
+E96,Security Scaffold v<*>.<*>.<*> initialized,System Notification
+E97,SELinux:  Initializing.,System Notification
+E98,SELinux:  Registering netfilter hooks,System Notification
+E99,SELinux:  Starting in permissive mode,System Notification
+E100,selinux_register_security:  Registering secondary module capability,System Notification
+E101,session closed for user <*>,System Notification
+E102,session opened for user <*> by (uid=<*>),System Notification
+E103,session opened for user <*> by LOGIN(uid=<*>),System Notification
+E104,Setting network parameters:  succeeded,System Notification
+E105,Starting pcmcia:  succeeded,System Notification
+E106,syslogd startup succeeded,System Notification
+E107,"There is already a security framework initialized, register_security failed.",Error
+E108,"Total HugeTLB memory allocated, <*>",System Notification
+E109,Transparent bridge - <*>,System Notification
+E110,usbcore: registered new driver hub,System Notification
+E111,usbcore: registered new driver usbfs,System Notification
+E112,User unknown timed out after <*> seconds at <*>:<*>:<*> <*>,Security Alert
+E113,Using tsc for high-res timesource,System Notification
+E114,Version <*>.<*>.<*> Starting,System Notification
+E115,VFS: Disk quotas dquot_<*>.<*>.<*>,System Notification
+E116,warning: can't get client address: Connection reset by peer,Error
+E117,You can enable it with acpi=force,System Notification
+E118,zapping low mappings.,System Notification
