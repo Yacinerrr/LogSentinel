@@ -1,0 +1,51 @@
+EventId,EventTemplate,target_label
+E1,"<*> Created NT transaction (seq <*>) result <*>, handle @<*>",System Notification
+E2,"<*> Creating NT transaction (seq <*>), objectname [<*>]""(null)""",System Notification
+E3,<*> CSI perf trace:,System Notification
+E4,<*> CSI Store <*> (<*>) initialized,System Notification
+E5,"<*> IAdvancedInstallerAwareStore_ResolvePendingTransactions (call <*>) (flags = <*>, progress = <*>, phase = <*>, pdwDisposition = @<*>",System Notification
+E6,<*> ICSITransaction::Commit calling IStorePendingTransaction::Apply - coldpatching=FALSE applyflags=<*>,System Notification
+E7,<*> Performing <*> operations; <*> are not lock/unlock and follow:,System Notification
+E8,"<*> Store coherency cookie matches last scavenge cookie, skipping scavenge.",System Notification
+E9,<*>@<*>/<*>/<*>:<*>:<*>:<*>.<*> CSI Transaction @<*> destroyed,System Notification
+E10,"<*>@<*>/<*>/<*>:<*>:<*>:<*>.<*> CSI Transaction @<*> initialized for deployment engine {<*>} with flags <*> and client id [<*>]""<*>/""",System Notification
+E11,<*>@<*>/<*>/<*>:<*>:<*>:<*>.<*> PopulateComponentFamiliesKey - Begin,System Notification
+E12,<*>@<*>/<*>/<*>:<*>:<*>:<*>.<*> PopulateComponentFamiliesKey - End,System Notification
+E13,<*>@<*>/<*>/<*>:<*>:<*>:<*>.<*> WcpInitialize (wcp.dll version <*>) called (stack @<*>),System Notification
+E14,"Disabling manifest caching, because the image is not writeable.",System Notification
+E15,Ending the TrustedInstaller main loop.,System Notification
+E16,Ending TrustedInstaller finalization.,System Notification
+E17,Ending TrustedInstaller initialization.,System Notification
+E18,Expecting attribute name [HRESULT = <*> - CBS_E_MANIFEST_INVALID_ITEM],Error
+E19,Failed to create backup log cab. [HRESULT = <*> - ERROR_INVALID_FUNCTION],Error
+E20,Failed to get next element [HRESULT = <*> - CBS_E_MANIFEST_INVALID_ITEM],Error
+E21,Failed to internally open package. [HRESULT = <*> - CBS_E_INVALID_PACKAGE],Error
+E22,Idle processing thread terminated normally,System Notification
+E23,Loaded Servicing Stack <*> with Core: <*>\cbscore.dll,System Notification
+E24,"Loading offline registry hive: <*>, into registry key '<*>' from path '<*>'.",System Notification
+E25,"No startup processing required, TrustedInstaller service was not set as autostart, or else a reboot is still pending.",System Notification
+E26,NonStart: Checking to ensure startup processing was not required.,System Notification
+E27,"NonStart: Success, startup processing not required as expected.",System Notification
+E28,Offline image is: read-only,System Notification
+E29,"Read out cached package applicability for package: <*>, ApplicableState: <*>, CurrentState:<*>",System Notification
+E30,Reboot mark refs incremented to: <*>,System Notification
+E31,Reboot mark refs: <*>,System Notification
+E32,Scavenge: Begin CSI Store,System Notification
+E33,"Scavenge: Completed, disposition: <*>",System Notification
+E34,Scavenge: Starts,System Notification
+E35,Session: <*>_<*> initialized by client SPP.,System Notification
+E36,Session: <*>_<*> initialized by client WindowsUpdateAgent.,System Notification
+E37,SQM: Cleaning up report files older than <*> days.,System Notification
+E38,SQM: Failed to start standard sample upload. [HRESULT = <*> - E_FAIL],Error
+E39,"SQM: Failed to start upload with file pattern: <*>, flags: <*> [HRESULT = <*> - E_FAIL]",Error
+E40,SQM: Initializing online with Windows opt-in: False,System Notification
+E41,"SQM: Queued <*> file(s) for upload with pattern: <*>, flags: <*>",System Notification
+E42,SQM: Requesting upload of all unsent reports.,System Notification
+E43,SQM: Warning: Failed to upload all unsent reports. [HRESULT = <*> - E_FAIL],Error
+E44,Starting the TrustedInstaller main loop.,System Notification
+E45,Starting TrustedInstaller finalization.,System Notification
+E46,Starting TrustedInstaller initialization.,System Notification
+E47,Startup processing thread terminated normally,System Notification
+E48,TrustedInstaller service starts successfully.,System Notification
+E49,Unloading offline registry hive: <*>,System Notification
+E50,Warning: Unrecognized packageExtended attribute.,Error
