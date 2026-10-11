@@ -1,0 +1,41 @@
+EventId,EventTemplate,target_label
+E1,*** info [mice.c(<*>)]:,System Notification
+E2,<*> HIGHMEM available.,System Notification
+E3,<*> LOWMEM available.,System Notification
+E4,ACPI disabled because your bios is from <*> and too old,System Notification
+E5,ACPI: ACPI tables contain no PCI IRQ routing entries,System Notification
+E6,ACPI: Interpreter disabled.,System Notification
+E7,ACPI: Subsystem revision <*>,System Notification
+E8,ALERT exited abnormally with [1],Error
+E9,"ANONYMOUS FTP LOGIN FROM <*>,  (anonymous)",Security Alert
+E10,apm: BIOS version <*>.<*> Flags <*> (Driver version <*>),System Notification
+E11,audit(<*>.<*>:<*>): initialized,System Notification
+E12,audit: initializing netlink socket (disabled),System Notification
+E13,Authentication failed from <*> (<*>): Permission denied in replay cache code,Security Alert
+E14,Authentication failed from <*> (<*>): Software caused connection abort,Security Alert
+E15,authentication failure; logname= uid=0 euid=0 tty=:0 ruser= rhost=,Security Alert
+E16,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>,Security Alert
+E17,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=guest,Security Alert
+E18,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=root,Security Alert
+E19,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=test,Security Alert
+E20,BIOS-e820: <*> - <*> (reserved),System Notification
+E21,BIOS-e820: <*> - <*> (usable),System Notification
+E22,BIOS-provided physical RAM map:,System Notification
+E23,Bringing up loopback interface:  succeeded,System Notification
+E24,Built <*> zonelists,System Notification
+E25,Calibrating delay loop... <*>.<*> BogoMIPS,System Notification
+E26,Capability LSM initialized,System Notification
+E27,check pass; user unknown,Security Alert
+E28,Checking 'hlt' instruction... OK.,System Notification
+E29,connection from <*> (<*>) at <*>:<*>:<*>,System Notification
+E30,Console: colour VGA+ <*>,System Notification
+E31,Couldn't authenticate user,Security Alert
+E32,"CPU <*> irqstacks, hard=<*> soft=<*>",System Notification
+E33,CPU: Intel Pentium III (Coppermine) stepping <*>,System Notification
+E34,"CPU: L1 I cache: <*>, L1 D cache: <*>",System Notification
+E35,CPU: L2 cache: <*>,System Notification
+E36,creating device node '/udev/<*>',System Notification
+E37,cupsd shutdown succeeded,System Notification
+E38,cupsd startup succeeded,System Notification
+E39,"Dentry cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E40,Detected <*>.<*> MHz processor.,System Notification
