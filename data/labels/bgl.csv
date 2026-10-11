@@ -7,3 +7,12 @@ data TLB error interrupt,Critical Error
 data storage interrupt,Critical Error
 machine check interrupt,Critical Error
 Microloader Assertion,Critical Error
+machine check interrupt (bit=0x06): L3 major internal error,Critical Error
+machine check interrupt (bit=0x1d): L2 dcache unit data parity error,Critical Error
+DDR machine check register: 0x00000000 0x00010000,Critical Error
+machine check interrupt (bit=0x1d): L2 dcache unit write data parity error,Critical Error
+machine check interrupt (bit=0x10): L2 dcache unit read return parity error,Critical Error
+DDR machine check register: 0x00000000 0x00000000,Critical Error
+machine check interrupt (bit=0x10): L2 DCU read error,Critical Error
+machine check interrupt (bit=0x09): Torus/Tree/GI read error <*>,Critical Error
+DDR machine check register: 0x00000000 0x00010010,Critical Error
