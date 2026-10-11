@@ -1,15 +1,35 @@
-import csv, collections
 
-JEUX = {"openssh": "OpenSSH", "apache": "Apache", "openstack": "OpenStack",
-        "windows": "Windows", "linux": "Linux"}
+import csv
+import collections
+
+JEUX = {
+    "openssh": "OpenSSH",
+    "apache": "Apache",
+    "openstack": "OpenStack",
+    "windows": "Windows",
+    "linux": "Linux",
+    "bgl": "BGL",
+}
 
 lignes = []
+
 for nom, dossier in JEUX.items():
-    etiquettes = {r["EventId"]: r["target_label"]
-                 for r in csv.DictReader(open(f"data/labels/{nom}.csv", encoding="utf-8"))}
+    with open(
+        f"data/labels/{nom}.csv",
+        encoding="utf-8-sig",
+        newline="",
+    ) as f:
+        etiquettes = {
+            r["EventId"]: r["target_label"]
+            for r in csv.DictReader(f)
+        }
+
     brut = f"data/raw/{dossier}/{dossier}_2k.log_structured.csv"
-    for r in csv.DictReader(open(brut, encoding="utf-8")):
-        lignes.append((nom, r["Content"], etiquettes[r["EventId"]]))
+
+    with open(brut, encoding="utf-8-sig", newline="") as f:
+        for r in csv.DictReader(f):
+            label = etiquettes.get(r["EventId"], "Unclassified")
+            lignes.append((nom, r["Content"], label))
 
 with open("data/labeled_logs.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f, lineterminator="\n")
