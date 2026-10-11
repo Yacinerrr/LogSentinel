@@ -39,3 +39,43 @@ E37,cupsd shutdown succeeded,System Notification
 E38,cupsd startup succeeded,System Notification
 E39,"Dentry cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
 E40,Detected <*>.<*> MHz processor.,System Notification
+E41,"DMA zone: <*> pages, LIFO batch:<*>",System Notification
+E42,DMI <*>.<*> present.,System Notification
+E43,"Dquot-cache hash table entries: <*> (order <*>, <*> bytes)",System Notification
+E44,Enabling fast FPU save and restore... done.,System Notification
+E45,Enabling unmasked SIMD FPU exception support... done.,System Notification
+E46,Failure registering capabilities with the kernel,Error
+E47,getpeername (ftpd): Transport endpoint is not connected,Error
+E48,HCI daemon ver <*>.<*> started,System Notification
+E49,hcid startup succeeded,System Notification
+E50,"HighMem zone: <*> pages, LIFO batch:<*>",System Notification
+E51,imps2: Auto-detected intellimouse PS/<*>,System Notification
+E52,Initializing CPU#<*>,System Notification
+E53,Initializing Cryptographic API,System Notification
+E54,Initializing random number generator:  succeeded,System Notification
+E55,"Inode-cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E56,Intel machine check architecture supported.,System Notification
+E57,Intel machine check reporting enabled on CPU#<*>.,System Notification
+E58,irqbalance startup succeeded,System Notification
+E59,isapnp: No Plug & Play device found,System Notification
+E60,isapnp: Scanning for PnP cards...,System Notification
+E61,Kerberos authentication failed,Security Alert
+E62,Kernel command line: ro root=LABEL=/ rhgb quiet,System Notification
+E63,kernel.core_uses_pid = <*>,System Notification
+E64,"klogd <*>.<*>.<*>, log source = /proc/kmsg started.",System Notification
+E65,klogd startup succeeded,System Notification
+E66,Linux agpgart interface v<*>.<*> (c) Dave Jones,System Notification
+E67,Linux Plug and Play Support v<*>.<*> (c) Adam Belay,System Notification
+E68,Linux version <*>.<*>.<*><*>.<*> (bhcompile@bugs.build.redhat.com) (gcc version <*>.<*>.<*> (Red Hat Linux <*>.<*>.<*><*>)) #<*> <*>:<*>:<*> EDT <*>,System Notification
+E69,mapped 4G/4G trampoline to <*>.,System Notification
+E70,"Memory: <*> available (<*> kernel code, <*> reserved, <*> data, <*> init, <*> highmem)",System Notification
+E71,"Mount-cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E72,mtrr: v<*>.<*> (<*>),System Notification
+E73,NET: Registered protocol family <*>,System Notification
+E74,"Normal zone: <*> pages, LIFO batch:<*>",System Notification
+E75,notify question section contains no SOA,Error
+E76,On node <*> totalpages: <*>,System Notification
+E77,PCI: Invalid ACPI-PCI IRQ routing table,Error
+E78,"PCI: PCI BIOS revision <*>.<*> entry at <*>, last bus=<*>",System Notification
+E79,PCI: Probing PCI hardware,System Notification
+E80,PCI: Probing PCI hardware (bus <*>),System Notification
