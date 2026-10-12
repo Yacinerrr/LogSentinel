@@ -1,5 +1,0 @@
-EventId,EventTemplate,target_label
-E52,data storage interrupt,Critical Error
-E55,data TLB error interrupt,Critical Error
-E108,rts panic! - stopping execution,Critical Error
-E111,rts: kernel terminated for reason <*>,Critical Error
