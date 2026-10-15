@@ -1,0 +1,119 @@
+EventId,EventTemplate,target_label
+E1,*** info [mice.c(<*>)]:,System Notification
+E2,<*> HIGHMEM available.,System Notification
+E3,<*> LOWMEM available.,System Notification
+E4,ACPI disabled because your bios is from <*> and too old,System Notification
+E5,ACPI: ACPI tables contain no PCI IRQ routing entries,System Notification
+E6,ACPI: Interpreter disabled.,System Notification
+E7,ACPI: Subsystem revision <*>,System Notification
+E8,ALERT exited abnormally with [1],Error
+E9,"ANONYMOUS FTP LOGIN FROM <*>,  (anonymous)",Security Alert
+E10,apm: BIOS version <*>.<*> Flags <*> (Driver version <*>),System Notification
+E11,audit(<*>.<*>:<*>): initialized,System Notification
+E12,audit: initializing netlink socket (disabled),System Notification
+E13,Authentication failed from <*> (<*>): Permission denied in replay cache code,Security Alert
+E14,Authentication failed from <*> (<*>): Software caused connection abort,Security Alert
+E15,authentication failure; logname= uid=0 euid=0 tty=:0 ruser= rhost=,Security Alert
+E16,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>,Security Alert
+E17,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=guest,Security Alert
+E18,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=root,Security Alert
+E19,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=<*>  user=test,Security Alert
+E20,BIOS-e820: <*> - <*> (reserved),System Notification
+E21,BIOS-e820: <*> - <*> (usable),System Notification
+E22,BIOS-provided physical RAM map:,System Notification
+E23,Bringing up loopback interface:  succeeded,System Notification
+E24,Built <*> zonelists,System Notification
+E25,Calibrating delay loop... <*>.<*> BogoMIPS,System Notification
+E26,Capability LSM initialized,System Notification
+E27,check pass; user unknown,Security Alert
+E28,Checking 'hlt' instruction... OK.,System Notification
+E29,connection from <*> (<*>) at <*>:<*>:<*>,System Notification
+E30,Console: colour VGA+ <*>,System Notification
+E31,Couldn't authenticate user,Security Alert
+E32,"CPU <*> irqstacks, hard=<*> soft=<*>",System Notification
+E33,CPU: Intel Pentium III (Coppermine) stepping <*>,System Notification
+E34,"CPU: L1 I cache: <*>, L1 D cache: <*>",System Notification
+E35,CPU: L2 cache: <*>,System Notification
+E36,creating device node '/udev/<*>',System Notification
+E37,cupsd shutdown succeeded,System Notification
+E38,cupsd startup succeeded,System Notification
+E39,"Dentry cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E40,Detected <*>.<*> MHz processor.,System Notification
+E41,"DMA zone: <*> pages, LIFO batch:<*>",System Notification
+E42,DMI <*>.<*> present.,System Notification
+E43,"Dquot-cache hash table entries: <*> (order <*>, <*> bytes)",System Notification
+E44,Enabling fast FPU save and restore... done.,System Notification
+E45,Enabling unmasked SIMD FPU exception support... done.,System Notification
+E46,Failure registering capabilities with the kernel,Error
+E47,getpeername (ftpd): Transport endpoint is not connected,Error
+E48,HCI daemon ver <*>.<*> started,System Notification
+E49,hcid startup succeeded,System Notification
+E50,"HighMem zone: <*> pages, LIFO batch:<*>",System Notification
+E51,imps2: Auto-detected intellimouse PS/<*>,System Notification
+E52,Initializing CPU#<*>,System Notification
+E53,Initializing Cryptographic API,System Notification
+E54,Initializing random number generator:  succeeded,System Notification
+E55,"Inode-cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E56,Intel machine check architecture supported.,System Notification
+E57,Intel machine check reporting enabled on CPU#<*>.,System Notification
+E58,irqbalance startup succeeded,System Notification
+E59,isapnp: No Plug & Play device found,System Notification
+E60,isapnp: Scanning for PnP cards...,System Notification
+E61,Kerberos authentication failed,Security Alert
+E62,Kernel command line: ro root=LABEL=/ rhgb quiet,System Notification
+E63,kernel.core_uses_pid = <*>,System Notification
+E64,"klogd <*>.<*>.<*>, log source = /proc/kmsg started.",System Notification
+E65,klogd startup succeeded,System Notification
+E66,Linux agpgart interface v<*>.<*> (c) Dave Jones,System Notification
+E67,Linux Plug and Play Support v<*>.<*> (c) Adam Belay,System Notification
+E68,Linux version <*>.<*>.<*><*>.<*> (bhcompile@bugs.build.redhat.com) (gcc version <*>.<*>.<*> (Red Hat Linux <*>.<*>.<*><*>)) #<*> <*>:<*>:<*> EDT <*>,System Notification
+E69,mapped 4G/4G trampoline to <*>.,System Notification
+E70,"Memory: <*> available (<*> kernel code, <*> reserved, <*> data, <*> init, <*> highmem)",System Notification
+E71,"Mount-cache hash table entries: <*> (order: <*>, <*> bytes)",System Notification
+E72,mtrr: v<*>.<*> (<*>),System Notification
+E73,NET: Registered protocol family <*>,System Notification
+E74,"Normal zone: <*> pages, LIFO batch:<*>",System Notification
+E75,notify question section contains no SOA,Error
+E76,On node <*> totalpages: <*>,System Notification
+E77,PCI: Invalid ACPI-PCI IRQ routing table,Error
+E78,"PCI: PCI BIOS revision <*>.<*> entry at <*>, last bus=<*>",System Notification
+E79,PCI: Probing PCI hardware,System Notification
+E80,PCI: Probing PCI hardware (bus <*>),System Notification
+E81,PCI: Using configuration type <*>,System Notification
+E82,PCI: Using IRQ router PIIX/ICH [<*>/<*>] at <*>,System Notification
+E83,pci_hotplug: PCI Hot Plug PCI Core version: <*>.<*>,System Notification
+E84,PID hash table entries: 512 (order <*>: <*> bytes),System Notification
+E85,portmap startup succeeded,System Notification
+E86,POSIX conformance testing by UNIFIX,System Notification
+E87,Real Time Clock Driver v<*>.<*>,System Notification
+E88,Received SNMP packet(s) from <*>,System Notification
+E89,removing device node '/udev/<*>',System Notification
+E90,restart.,System Notification
+E91,ROOT LOGIN ON tty2,User Action
+E92,rpc.idmapd startup succeeded,System Notification
+E93,rpc.statd startup succeeded,System Notification
+E94,sdpd startup succeeded,System Notification
+E95,sdpd v<*>.<*> started,System Notification
+E96,Security Scaffold v<*>.<*>.<*> initialized,System Notification
+E97,SELinux:  Initializing.,System Notification
+E98,SELinux:  Registering netfilter hooks,System Notification
+E99,SELinux:  Starting in permissive mode,System Notification
+E100,selinux_register_security:  Registering secondary module capability,System Notification
+E101,session closed for user <*>,System Notification
+E102,session opened for user <*> by (uid=<*>),System Notification
+E103,session opened for user <*> by LOGIN(uid=<*>),System Notification
+E104,Setting network parameters:  succeeded,System Notification
+E105,Starting pcmcia:  succeeded,System Notification
+E106,syslogd startup succeeded,System Notification
+E107,"There is already a security framework initialized, register_security failed.",Error
+E108,"Total HugeTLB memory allocated, <*>",System Notification
+E109,Transparent bridge - <*>,System Notification
+E110,usbcore: registered new driver hub,System Notification
+E111,usbcore: registered new driver usbfs,System Notification
+E112,User unknown timed out after <*> seconds at <*>:<*>:<*> <*>,Security Alert
+E113,Using tsc for high-res timesource,System Notification
+E114,Version <*>.<*>.<*> Starting,System Notification
+E115,VFS: Disk quotas dquot_<*>.<*>.<*>,System Notification
+E116,warning: can't get client address: Connection reset by peer,Error
+E117,You can enable it with acpi=force,System Notification
+E118,zapping low mappings.,System Notification

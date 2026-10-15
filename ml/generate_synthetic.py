@@ -1,63 +1,139 @@
-"""Generate a synthetic labeled dataset so both of you can start before real data exists.
-Usage: python -m ml.generate_synthetic --n 300 --out data/synthetic.csv
-"""
-import argparse
 import csv
 import random
+import re
 
-T = {
-    "User Action": ["User User{n} logged in.", "User User{n} logged out.", "Account with ID {n} created by admin{n}.",
-                    "User {user} updated profile settings.", "User {user} changed password successfully."],
-    "System Notification": ["Backup started at {n}:00.", "Backup completed successfully.", "System updated to version {n}.{n}.{n}.",
-                            "File data_{n}.csv uploaded successfully by user User{n}.", "Disk cleanup completed successfully.",
-                            "Scheduled maintenance window starts in {n} minutes.", "Cache rebuilt in {ms} ms."],
-    "HTTP Status": ['{ip} - - [12/May/2026:10:{n}:01] "GET /api/v{n}/items HTTP/1.1" 200 {n}',
-                    '{ip} - - [12/May/2026:10:{n}:09] "POST /login HTTP/1.1" 401 {n}',
-                    'nova.osapi_compute.wsgi.server "GET /v2/{id}/servers/detail HTTP/1.1" status: 500 len: {n} time: 0.{n}'],
-    "Security Alert": ["Failed password for root from {ip} port {n} ssh2", "Multiple failed login attempts detected for {user}",
-                       "Unauthorized access attempt on /admin from {ip}", "Suspicious privilege escalation by {user}",
-                       "Port scan detected from {ip}, {n} ports probed"],
-    "Critical Error": ["Email service experiencing issues with sending, retrying in {n}s", "Database connection lost: pool exhausted",
-                       "Kernel panic: unable to mount root fs", "Service payment-gateway crashed with exit code {n}",
-                       "Out of memory: process {n} killed"],
-    "Error": ["Unexpected exception in handler {user}: NullPointerException", "Request {id} failed with timeout after {ms} ms",
-              "Failed to parse config file line {n}", "Shard {n} replication lag exceeded threshold"],
-    "Resource Usage": ["Nova compute claim successful: memory {n} MB, disk {n} GB, vcpus {n}", "CPU usage at {n}% on node-{n}",
-                       "Memory usage {n}% exceeds soft limit", "Disk /var/log {n}% full"],
-    "Workflow Error": ["Escalation rule failed for ticket ID {id}: undefined assignee", "Task assignment error for case {id}: no eligible agent",
-                       "Process step {n} of workflow {id} aborted: missing approval"],
-    "Deprecation Warning": ["The '{user}' module will be retired in version {n}.0", "API endpoint /v{n}/export is deprecated, use /v{n}/exports",
-                            "Function legacy_sync() is deprecated and will be removed"],
+random.seed(42)
+
+# 1. Les valeurs qui remplissent les {trous}
+LISTES = {
+    "user": ["alice", "bob", "omar", "sara", "karim", "nadia", "youcef", "lina", "admin", "manager1", "dev02", "support"],
+    "doc": ["purchase order", "invoice", "sales order", "ticket", "maintenance request", "manufacturing order", "transfer", "quotation"],
+    "model": ["sale.order", "purchase.order", "res.partner", "stock.picking", "account.move"],
+    "report": ["monthly_sales", "stock_valuation", "aged_receivable", "maintenance_summary"],
+    "filename": ["invoice_2026.pdf", "contract.docx", "inventory.xlsx", "photo.png", "notes.txt"],
+    "module": ["ReportGenerator", "LegacyExporter", "PdfBuilder", "MailBridge", "SyncAgent", "OldScheduler", "CsvImporter", "AuthProxy"],
+    "version": ["2.0", "3.1", "4.0", "5.2", "6.0", "17.0", "18.0", "19.0"],
+    "func": ["get_records", "render_page", "load_config", "send_notification", "parse_date", "open_session", "build_query", "format_amount"],
+    "newfunc": ["fetch_records", "render_view", "read_config", "notify", "parse_datetime", "start_session", "make_query", "format_currency"],
+    "option": ["xmlrpc_port", "longpolling_port", "db_host", "log_handler", "workers_legacy"],
+    "newoption": ["http_port", "gevent_port", "db_hostname", "log_level", "workers"],
+    "api": ["Legacy REST", "SOAP", "XML-RPC", "v1 Reports", "Old Auth"],
+    "tech": ["Python", "PostgreSQL", "Node.js", "OpenSSL", "Java"],
+    "techver": ["3.8", "9.6", "12", "1.0.2", "8"],
+    "feature": ["classic dashboard", "legacy export wizard", "old calendar view", "inline editor"],
+    "newfeature": ["new dashboard", "export tool", "scheduler view", "rich editor"],
+    "param": ["timeout_ms", "use_cache", "legacy_mode", "mode", "batch_size"],
+    "state": ["draft", "pending", "waiting approval", "in progress", "done", "cancelled"],
+    "field": ["customer", "assignee", "due date", "warehouse", "currency", "approver", "payment term", "responsible"],
+    "action": ["notify manager", "close ticket", "assign team", "send reminder", "create task"],
+    "policy": ["Gold support", "Standard SLA", "Critical incidents", "VIP customers"],
+    "rule": ["round robin", "by team", "by region", "workload balancing"],
+    "service": ["PostgreSQL", "Odoo server", "nginx", "redis", "RabbitMQ", "Apache", "MySQL"],
+    "reason": ["Fatal exception in interrupt", "VFS: Unable to mount root fs", "Attempted to kill init", "Out of memory and no killable processes"],
+    "path": ["/var/lib/postgresql/data", "/var/lib/mysql", "/opt/odoo/data", "/srv/db"],
+    "mount": ["/var", "/data", "/home", "/srv", "/backup"],
+    "store": ["orders table", "audit log", "customer database", "message queue", "ledger"],
+    "md": ["md0", "md1", "md2"],
 }
-SOURCES = ["ModernCRM", "BillingSystem", "AnalyticsEngine", "ThirdPartyAPI", "ModernHR"]
-LLM_CATS = {"Workflow Error", "Deprecation Warning"}
+LISTES["state2"] = LISTES["state"]
+
+FONCTIONS = {
+    "ip": lambda: ".".join(str(random.randint(1, 254)) for _ in range(4)),
+    "port": lambda: random.randint(1024, 65535),
+    "id": lambda: random.randint(1000, 99999),
+    "n": lambda: random.randint(1, 5000),
+    "pid": lambda: random.randint(100, 32000),
+    "retries": lambda: random.randint(2, 10),
+    "hex": lambda: "%08x" % random.getrandbits(32),
+}
 
 
-def fill(t):
-    return t.format(n=random.randint(1, 999), ms=random.randint(5, 9000), id=random.randint(10000, 99999),
-                    ip=".".join(str(random.randint(1, 254)) for _ in range(4)),
-                    user=random.choice(["alice", "bob", "svc_api", "legacy_auth", "mailer"]))
+def valeur(nom):
+    if nom in FONCTIONS:
+        return FONCTIONS[nom]()
+    return random.choice(LISTES[nom])
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--n", type=int, default=300, help="rows per category")
-    ap.add_argument("--out", default="data/synthetic.csv")
-    a = ap.parse_args()
-    random.seed(42)
-    rows = []
-    for label, templates in T.items():
-        n = 40 if label in LLM_CATS else a.n   # LLM categories are deliberately low-data
-        for _ in range(n):
-            src = "LegacyCRM" if label in LLM_CATS else random.choice(SOURCES)
-            rows.append((src, fill(random.choice(templates)), label))
-    random.shuffle(rows)
-    with open(a.out, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["source", "log_message", "target_label"])
-        w.writerows(rows)
-    print(f"wrote {len(rows)} rows to {a.out}")
+def remplir(phrase):
+    return re.sub(r"\{(\w+)\}", lambda m: str(valeur(m.group(1))), phrase)
 
 
-if __name__ == "__main__":
-    main()
+# 2. Les phrases à trous : (nombre de lignes voulu, liste de phrases)
+MODELES = {
+    "Deprecation Warning": (200, [
+        "The '{module}' module will be retired in version {version}",
+        "DeprecationWarning: {func}() is deprecated and will be removed in version {version}, use {newfunc}() instead",
+        "WARNING: option '{option}' is deprecated and will be removed in a future release, use '{newoption}' instead",
+        "The {api} API is deprecated since version {version} and scheduled for removal",
+        "Support for {tech} {techver} is deprecated and will be dropped in version {version}",
+        "The {feature} has been marked obsolete, please migrate to the {newfeature} before version {version}",
+        "Usage of the '{param}' parameter is deprecated and will be ignored starting with version {version}",
+        "{module}.{func} is deprecated, please use {module}.{newfunc}",
+    ]),
+    "Workflow Error": (200, [
+        "Escalation rule failed for ticket ID {id}: undefined assignee",
+        "Approval workflow stopped for {doc} {id}: no approver defined",
+        "Validation failed for {doc} {id}: required field '{field}' is empty",
+        "Cannot confirm {doc} {id}: related {doc} is still in state '{state}'",
+        "Workflow transition '{state}' -> '{state2}' is not allowed for {doc} {id}",
+        "Automated action '{action}' failed on {doc} {id}: missing {field}",
+        "SLA policy '{policy}' could not be applied to ticket {id}: no matching team",
+        "UserError: you cannot validate {doc} {id} while the {field} is not set",
+        "Assignment rule '{rule}' found no eligible user for {doc} {id}",
+    ]),
+    "Critical Error": (200, [
+        "Database connection lost, service down",
+        "CRITICAL: {service} service stopped unexpectedly and could not be restarted",
+        "kernel panic - not syncing: {reason}",
+        "FATAL: the database cluster at '{path}' is corrupted, server cannot start",
+        "Filesystem {mount} is corrupted and was remounted read-only, data may be lost",
+        "Data loss detected: {n} records in {store} could not be recovered",
+        "CRITICAL: all worker processes of {service} have crashed, application is unavailable",
+        "RAID array {md} has failed, volume {mount} is offline",
+        "FATAL: {service} unreachable after {retries} retries, shutting down",
+    ]),
+    "User Action": (250, [
+        "User {user} logged in.",
+        "User {user} logged out.",
+        "Accepted password for {user} from {ip} port {port} ssh2",
+        "{user} created {doc} {id}",
+        "{user} updated {doc} {id}",
+        "{user} deleted {doc} {id}",
+        "User {user} downloaded report '{report}'",
+        "User {user} changed their password",
+        "User {user} exported {n} records from {model}",
+        "Login successful for user '{user}' from {ip}",
+        "Received disconnect from {ip}: 11: disconnected by user",
+        "User {user} uploaded file '{filename}'",
+    ]),
+    "Unclassified": (120, [
+        "-- MARK --",
+        "ok",
+        "...",
+        "{hex}",
+        "0x{hex} 0x{hex}",
+        "{n} {n} {n}",
+        "[{n}]",
+        "== {n} ==",
+        "Connection to {ip} est",
+        "{pid}]: session op",
+        "kernel: xyz 0x{hex}",
+    ]),
+}
+
+# 3. Génération : on tire jusqu'à avoir assez de lignes toutes différentes
+lignes = []
+for label, (cible, phrases) in MODELES.items():
+    textes = set()
+    essais = 0
+    while len(textes) < cible and essais < cible * 50:
+        essais += 1
+        textes.add(remplir(random.choice(phrases)))
+    for texte in sorted(textes):
+        lignes.append(("synthetic", texte, label))
+    print(f"{len(textes):4d}  {label}")
+
+with open("data/synthetic_logs.csv", "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f, lineterminator="\n")
+    w.writerow(["source", "log_message", "target_label"])
+    w.writerows(lignes)
