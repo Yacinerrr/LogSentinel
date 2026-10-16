@@ -43,8 +43,26 @@ def eval_random(df, col="groupe"):
     return f1_score(yte, pred, average="macro"), classification_report(yte, pred, zero_division=0)
 
 
-def eval_grouped(df):
-    ...  # étape 4
+def eval_grouped(df, col="groupe", n_splits=5):
+    y = df["target_label"]
+    cv = StratifiedGroupKFold(n_splits=n_splits, shuffle=True, random_state=SEED)
+    scores = {"toutes": [], "réelles": [], "synthétiques": []}
+    for tr, te in cv.split(df[col], y, groups=df["groupe"]):
+        m = make_model().fit(df[col].iloc[tr], y.iloc[tr])
+        test = df.iloc[te]
+        pred = m.predict(test[col])
+        masques = {
+            "toutes": test["source"].notna(),
+            "réelles": test["source"] != "synthetic",
+            "synthétiques": test["source"] == "synthetic",
+        }
+        for nom, masque in masques.items():
+            yt = test["target_label"][masque]
+            if len(yt) == 0:
+                continue
+            scores[nom].append(f1_score(yt, pred[masque.values], labels=sorted(set(yt)),
+                                        average="macro", zero_division=0))
+    return {nom: (np.mean(v), np.std(v)) for nom, v in scores.items()}
 
 
 def top_words(model, k=8):
@@ -61,6 +79,11 @@ def main():
         f1, rapport = eval_random(df, col)
         print(f"[80/20 au hasard] texte = {col:11s} macro-F1 = {f1:.3f}")
     print(rapport)
+    for col in ["log_message", "groupe"]:
+        res = eval_grouped(df, col)
+        print(f"[par groupes, 5 plis] texte = {col}")
+        for nom, (moy, ect) in res.items():
+            print(f"    {nom:13s} macro-F1 = {moy:.3f} ± {ect:.3f}")
 
 
 if __name__ == "__main__":
