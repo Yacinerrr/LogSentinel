@@ -65,8 +65,14 @@ def eval_grouped(df, col="groupe", n_splits=5):
     return {nom: (np.mean(v), np.std(v)) for nom, v in scores.items()}
 
 
-def top_words(model, k=8):
-    ...  # étape 5
+def top_words(df, col="groupe", k=8):
+    model = make_model().fit(df[col], df["target_label"])
+    vec = model.named_steps["tfidfvectorizer"]
+    clf = model.named_steps["logisticregression"]
+    mots = vec.get_feature_names_out()
+    for i, classe in enumerate(clf.classes_):
+        meilleurs = np.argsort(clf.coef_[i])[::-1][:k]
+        print(f"{classe:20s} {', '.join(mots[meilleurs])}")
 
 
 def main():
@@ -84,6 +90,8 @@ def main():
         print(f"[par groupes, 5 plis] texte = {col}")
         for nom, (moy, ect) in res.items():
             print(f"    {nom:13s} macro-F1 = {moy:.3f} ± {ect:.3f}")
+    print("\nMots les plus influents par catégorie (modèle entraîné sur tout le dataset)")
+    top_words(df, "groupe")
 
 
 if __name__ == "__main__":
