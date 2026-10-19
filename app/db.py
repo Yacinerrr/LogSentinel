@@ -34,8 +34,9 @@ class LLMCache(Base):
 
 
 class Database:
-    def __init__(self, url: str):
+    def __init__(self, url: str, migrate: bool = True):
         kwargs = {}
+        in_memory = url in ("sqlite://", "sqlite:///:memory:")
         if url.startswith("sqlite"):
             kwargs["connect_args"] = {"check_same_thread": False}
             if url in ("sqlite://", "sqlite:///:memory:"):
@@ -44,7 +45,11 @@ class Database:
                 path = url.replace("sqlite:///", "", 1)
                 os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
         self.engine = create_engine(url, **kwargs)
-        Base.metadata.create_all(self.engine)
+        if in_memory or not migrate:
+            Base.metadata.create_all(self.engine)   # throwaway DBs (tests)
+        else:
+            from app.migrations import run_migrations  # real DBs: schema comes from Alembic
+            run_migrations(self.engine, url)
         self.Session = sessionmaker(self.engine, expire_on_commit=False)
 
     # --- LLM cache (cuts repeated R1 calls) ---

@@ -5,3 +5,4 @@ eval:      ; python -m ml.evaluate data/synthetic.csv
 api:       ; uvicorn app.api.main:create_app --factory --reload
 dash:      ; streamlit run dashboard/app.py
 test:      ; pytest -q
+migrate:   ; alembic upgrade head
