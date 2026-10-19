@@ -17,6 +17,5 @@ def alembic_config(url: str) -> Config:
 
 
 def run_migrations(engine, url: str) -> None:
-    tables = set(inspect(engine).get_table_names())
     # Legacy databases are adopted by the Alembic environment before upgrading.
     command.upgrade(alembic_config(url), "head")
