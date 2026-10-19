@@ -7,13 +7,14 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor
 
 from fastapi import APIRouter, Depends, FastAPI, File, HTTPException, Request, UploadFile
-from fastapi.responses import PlainTextResponse, StreamingResponse
+from fastapi.responses import FileResponse, PlainTextResponse, StreamingResponse
 from pydantic import ValidationError
 from sqlalchemy import func, select
 
 from app.classifiers.pipeline import build_pipeline
 from app.config import get_settings
 from app.db import Database, LogRecord
+from app.jobs import JobManager, JobsBusy
 from app.logging_config import setup_logging
 from app.schemas import BatchIn, FeedbackIn, LogIn, LogRow, PredictionOut
 from app.security import RateLimiter, csv_safe, make_auth_dependency
@@ -56,18 +57,42 @@ def create_app(settings=None, pipeline=None, db=None) -> FastAPI:
     def run(items: list[LogIn]) -> list[PredictionOut]:
         with ThreadPoolExecutor(max_workers=settings.max_workers) as ex:
             preds = list(ex.map(lambda i: pipeline.classify(i.source, i.log_message), items))
-        out = []
+        recs = [LogRecord(source=i.source, message=i.log_message, label=p.label, tier=p.tier,
+                          confidence=p.confidence, latency_ms=p.latency_ms) for i, p in zip(items, preds)]
         with db.Session() as s:
-            for item, p in zip(items, preds):
-                rec = LogRecord(source=item.source, message=item.log_message, label=p.label,
-                                tier=p.tier, confidence=p.confidence, latency_ms=p.latency_ms)
-                s.add(rec)
-                s.flush()
-                out.append(PredictionOut(id=rec.id, source=item.source, log_message=item.log_message,
-                                         label=p.label, tier=p.tier, confidence=p.confidence,
-                                         latency_ms=p.latency_ms))
+            s.add_all(recs)
+            s.flush()      # assigns ids for the whole batch in one round-trip
             s.commit()
-        return out
+        return [PredictionOut(id=r.id, source=r.source, log_message=r.message, label=r.label, tier=r.tier,
+                              confidence=r.confidence, latency_ms=r.latency_ms) for r in recs]
+
+    jobs = JobManager(run, settings.jobs_dir, settings.job_chunk_size, settings.jobs_ttl_s,
+                      settings.max_running_jobs)
+
+    async def read_csv_items(file: UploadFile, max_rows: int, over_hint: str = "") -> list[LogIn]:
+        if not (file.filename or "").endswith(".csv"):
+            raise HTTPException(400, "File must be a CSV")
+        data = await file.read(settings.max_csv_bytes + 1)
+        if len(data) > settings.max_csv_bytes:
+            raise HTTPException(413, f"CSV larger than {settings.max_csv_bytes} bytes")
+        items: list[LogIn] = []
+        try:
+            reader = csv.DictReader(io.StringIO(data.decode("utf-8-sig")))
+            if not reader.fieldnames or not {"source", "log_message"} <= set(reader.fieldnames):
+                raise HTTPException(400, "CSV needs 'source' and 'log_message' columns")
+            for r in reader:
+                items.append(LogIn(source=r["source"], log_message=r["log_message"]))
+                if len(items) > max_rows:
+                    raise HTTPException(413, f"More than {max_rows} rows. {over_hint}".strip())
+        except UnicodeDecodeError:
+            raise HTTPException(400, "CSV must be UTF-8")
+        except csv.Error:
+            raise HTTPException(400, "Malformed CSV")
+        except ValidationError as e:
+            raise HTTPException(400, f"Invalid row: {e.errors()[0]['msg']}")
+        if not items:
+            raise HTTPException(400, "CSV has no rows")
+        return items
 
     @app.get("/health")
     def health():
@@ -83,20 +108,8 @@ def create_app(settings=None, pipeline=None, db=None) -> FastAPI:
 
     @api.post("/classify/csv")
     async def classify_csv(file: UploadFile = File(...)):
-        if not (file.filename or "").endswith(".csv"):
-            raise HTTPException(400, "File must be a CSV")
-        data = await file.read(settings.max_csv_bytes + 1)
-        if len(data) > settings.max_csv_bytes:
-            raise HTTPException(413, f"CSV larger than {settings.max_csv_bytes} bytes")
-        try:
-            reader = csv.DictReader(io.StringIO(data.decode("utf-8-sig")))
-            if not reader.fieldnames or not {"source", "log_message"} <= set(reader.fieldnames):
-                raise HTTPException(400, "CSV needs 'source' and 'log_message' columns")
-            items = [LogIn(source=r["source"], log_message=r["log_message"]) for r in reader]
-        except UnicodeDecodeError:
-            raise HTTPException(400, "CSV must be UTF-8")
-        except ValidationError as e:
-            raise HTTPException(400, f"Invalid row: {e.errors()[0]['msg']}")
+        """Small files only (answer comes back in the response). Big files: POST /classify/csv/jobs."""
+        items = await read_csv_items(file, settings.sync_csv_max_rows, "Use POST /classify/csv/jobs for large files.")
         results = run(items)
         buf = io.StringIO()
         w = csv.writer(buf)
@@ -106,6 +119,32 @@ def create_app(settings=None, pipeline=None, db=None) -> FastAPI:
         buf.seek(0)
         return StreamingResponse(buf, media_type="text/csv",
                                  headers={"Content-Disposition": "attachment; filename=classified.csv"})
+
+    @api.post("/classify/csv/jobs", status_code=202)
+    async def create_csv_job(request: Request, file: UploadFile = File(...)):
+        items = await read_csv_items(file, settings.max_csv_rows)
+        try:
+            job = jobs.create(items, request.state.key_id)
+        except JobsBusy:
+            raise HTTPException(429, "Too many jobs running, retry later", headers={"Retry-After": "30"})
+        return {"job_id": job.id, "total": job.total, "status": job.status}
+
+    @api.get("/jobs/{job_id}")
+    def job_status(job_id: str, request: Request):
+        job = jobs.get(job_id, request.state.key_id)
+        if not job:
+            raise HTTPException(404, "Job not found")
+        return {"job_id": job.id, "status": job.status, "total": job.total,
+                "processed": job.processed, "progress": job.progress, "error": job.error}
+
+    @api.get("/jobs/{job_id}/result")
+    def job_result(job_id: str, request: Request):
+        job = jobs.get(job_id, request.state.key_id)
+        if not job:
+            raise HTTPException(404, "Job not found")
+        if job.status != "done":
+            raise HTTPException(409, f"Job is {job.status}")
+        return FileResponse(job.path, media_type="text/csv", filename="classified.csv")
 
     @api.get("/logs", response_model=list[LogRow])
     def list_logs(label: str | None = None, tier: str | None = None,

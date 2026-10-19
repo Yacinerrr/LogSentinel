@@ -1,4 +1,5 @@
 import os
+import time
 import pandas as pd
 import requests
 import streamlit as st
@@ -27,10 +28,25 @@ with tab2:
     if st.button("Classify"):
         st.json(requests.post(f"{API}/classify", headers=H, json={"source": src, "log_message": msg}, timeout=120).json())
     st.divider()
-    up = st.file_uploader("CSV with source, log_message", type="csv")
+    up = st.file_uploader("CSV with source, log_message (up to 100,000 rows)", type="csv")
     if up and st.button("Classify CSV"):
-        res = requests.post(f"{API}/classify/csv", headers=H, files={"file": (up.name, up.getvalue())}, timeout=600)
-        st.download_button("Download results", res.content, "classified.csv", "text/csv")
+        r = requests.post(f"{API}/classify/csv/jobs", headers=H, files={"file": (up.name, up.getvalue())}, timeout=120)
+        if r.status_code != 202:
+            st.error(r.json().get("detail", r.text))
+        else:
+            job_id, bar = r.json()["job_id"], st.progress(0.0)
+            while True:
+                s = requests.get(f"{API}/jobs/{job_id}", headers=H, timeout=10).json()
+                bar.progress(min(s["progress"], 1.0), text=f"{s['processed']} / {s['total']} logs")
+                if s["status"] in ("done", "failed"):
+                    break
+                time.sleep(1)
+            if s["status"] == "done":
+                st.session_state["csv_result"] = requests.get(f"{API}/jobs/{job_id}/result", headers=H, timeout=120).content
+            else:
+                st.error("Job failed. See the API logs.")
+    if st.session_state.get("csv_result"):
+        st.download_button("Download results", st.session_state["csv_result"], "classified.csv", "text/csv")
 
 with tab3:
     st.caption("Lowest-confidence, unreviewed logs. Corrections become training data.")

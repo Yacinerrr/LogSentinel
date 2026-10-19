@@ -26,6 +26,12 @@ class Settings(BaseSettings):
     api_keys: str = ""                 # comma-separated; required when auth_enabled
     rate_limit_per_min: int = 120      # per API key
     max_csv_bytes: int = 10_000_000
+    max_csv_rows: int = 100_000          # async jobs
+    sync_csv_max_rows: int = 1_000       # /classify/csv (synchronous) stays small
+    jobs_dir: str = "data/jobs"
+    jobs_ttl_s: int = 3600               # finished jobs are deleted after this
+    max_running_jobs: int = 2
+    job_chunk_size: int = 200
     log_json: bool = True
 
     @property
