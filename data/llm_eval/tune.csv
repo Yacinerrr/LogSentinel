@@ -1,0 +1,45 @@
+source,log_message,target_label,groupe,bert_pred,bert_conf
+synthetic,Cannot confirm transfer 78184: related transfer is still in state 'done',Workflow Error,Cannot confirm transfer <N>: related transfer is still in state 'done',Workflow Error,0.6890431046485901
+openstack,"[instance: 95960536-049b-41f6-9049-05fc479b6a7c] Total disk: 15 GB, used: 0.00 GB",Resource Usage,"[instance: <UUID>] Total disk: <N> GB, used: <N> GB",Resource Usage,0.7559549808502197
+openstack,"[instance: 43204226-2f87-4da7-b7ee-4d20cc66e846] Total disk: 15 GB, used: 0.00 GB",Resource Usage,"[instance: <UUID>] Total disk: <N> GB, used: <N> GB",Resource Usage,0.769311785697937
+synthetic,Escalation rule failed for ticket ID 13026: undefined assignee,Workflow Error,Escalation rule failed for ticket ID <N>: undefined assignee,Workflow Error,0.7956543564796448
+synthetic,UserError: you cannot validate maintenance request 61236 while the currency is not set,Workflow Error,UserError: you cannot validate maintenance request <N> while the currency is not set,Workflow Error,0.710881233215332
+synthetic,1663]: session op,Unclassified,<N>]: session op,System Notification,0.47406116127967834
+linux,mtrr: v2.0 (20020519),System Notification,mtrr: v<N> (<N>),System Notification,0.3515375852584839
+openstack,The instance sync for host 'cp-1.slowvm1.tcloud-pg0.utah.cloudlab.us' did not match. Re-created its InstanceList.,Error,The instance sync for host 'cp-<N>.slowvm<N>.tcloud-pg<N>.utah.cloudlab.us' did not match. Re-created its InstanceList.,System Notification,0.3762788772583008
+windows,"SQM: Failed to start upload with file pattern: C:\Windows\servicing\sqm\*_std.sqm, flags: 0x2 [HRESULT = 0x80004005 - E_FAIL]",Error,"SQM: Failed to start upload with file pattern: C:\Windows\servicing\sqm\*_std.sqm, flags: <N>x<N> [HRESULT = <N>x<N> - E_FAIL]",Error,0.2200644165277481
+linux,"Inode-cache hash table entries: 8192 (order: 3, 32768 bytes)",System Notification,"Inode-cache hash table entries: <N> (order: <N>, <N> bytes)",System Notification,0.47684094309806824
+openstack,[instance: af5f7392-f7d4-4298-b647-c98924c64aa1] VM Stopped (Lifecycle Event),System Notification,[instance: <UUID>] VM Stopped (Lifecycle Event),System Notification,0.5348770022392273
+synthetic,sara created maintenance request 90995,User Action,sara created maintenance request <N>,User Action,0.6625136137008667
+synthetic,CRITICAL: nginx service stopped unexpectedly and could not be restarted,Critical Error,CRITICAL: nginx service stopped unexpectedly and could not be restarted,Critical Error,0.656034529209137
+openssh,input_userauth_request: invalid user default [preauth],Security Alert,input_userauth_request: invalid user default [preauth],Security Alert,0.736435055732727
+openssh,Invalid user test9 from 52.80.34.196,Security Alert,Invalid user test<N> from <N>,Security Alert,0.6073814034461975
+apache,[client 125.30.38.52] Directory index forbidden by rule: /var/www/html/,Error,[client <N>] Directory index forbidden by rule: /var/www/html/,Security Alert,0.23392699658870697
+synthetic,0x79fe7ccc 0xd6c6d997,Unclassified,<N>x<N>fe<N>ccc <N>xd<N>c<N>d<N>,Unclassified,0.8190293312072754
+openssh,Invalid user redhat from 187.141.143.180,Security Alert,Invalid user redhat from <N>,Security Alert,0.5100584030151367
+openstack,"While synchronizing instance power states, found 1 instances in the database and 0 instances on the hypervisor.",Error,"While synchronizing instance power states, found <N> instances in the database and <N> instances on the hypervisor.",System Notification,0.6712807416915894
+openssh,input_userauth_request: invalid user deploy [preauth],Security Alert,input_userauth_request: invalid user deploy [preauth],Security Alert,0.6893590092658997
+synthetic,CRITICAL: Odoo server service stopped unexpectedly and could not be restarted,Critical Error,CRITICAL: Odoo server service stopped unexpectedly and could not be restarted,Critical Error,0.8046364188194275
+synthetic,sara updated manufacturing order 28752,User Action,sara updated manufacturing order <N>,User Action,0.5767464637756348
+windows,Ending the TrustedInstaller main loop.,System Notification,Ending the TrustedInstaller main loop.,User Action,0.30801376700401306
+synthetic,Login successful for user 'admin' from 105.66.49.2,User Action,Login successful for user 'admin' from <N>,User Action,0.7641783952713013
+synthetic,The 'AuthProxy' module will be retired in version 5.2,Deprecation Warning,The 'AuthProxy' module will be retired in version <N>,Deprecation Warning,0.6686269044876099
+openstack,[instance: d6b7bd36-2943-4363-9235-fffdd89ea40e] VM Stopped (Lifecycle Event),System Notification,[instance: <UUID>] VM Stopped (Lifecycle Event),System Notification,0.4705779254436493
+apache,jk2_init() Can't find child 5621 in scoreboard,Error,jk<N>_init() Can't find child <N> in scoreboard,Error,0.3188857138156891
+synthetic,CRITICAL: RabbitMQ service stopped unexpectedly and could not be restarted,Critical Error,CRITICAL: RabbitMQ service stopped unexpectedly and could not be restarted,Critical Error,0.7960588932037354
+linux,CPU: L2 cache: 256K,System Notification,CPU: L<N> cache: <N>K,System Notification,0.261155903339386
+synthetic,11766]: session op,Unclassified,<N>]: session op,System Notification,0.4337795674800873
+openstack,"10.11.10.1 ""DELETE /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/d6b7bd36-2943-4363-9235-fffdd89ea40e HTTP/1.1"" status: 204 len: 203 time: 0.2511380",HTTP Status,"<N> ""DELETE /v<N>/<HEX>/servers/<UUID> HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7462872266769409
+openstack,Running instance usage audit for host cp-1.slowvm1.tcloud-pg0.utah.cloudlab.us from 2017-05-16 05:00:00 to 2017-05-16 06:00:00. 87 instances.,System Notification,Running instance usage audit for host cp-<N>.slowvm<N>.tcloud-pg<N>.utah.cloudlab.us from <N>-<N>-<N> <N>:<N>:<N> to <N>-<N>-<N> <N>:<N>:<N>. <N> instances.,System Notification,0.38000619411468506
+synthetic,CRITICAL: redis service stopped unexpectedly and could not be restarted,Critical Error,CRITICAL: redis service stopped unexpectedly and could not be restarted,Critical Error,0.7740029096603394
+openstack,"10.11.21.135,10.11.10.1 ""GET /latest/meta-data/local-ipv4 HTTP/1.1"" status: 200 len: 129 time: 0.0008481",HTTP Status,"<N>,<N> ""GET /latest/meta-data/local-ipv<N> HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7925256490707397
+synthetic,Escalation rule failed for ticket ID 84318: undefined assignee,Workflow Error,Escalation rule failed for ticket ID <N>: undefined assignee,Workflow Error,0.7303329110145569
+apache,jk2_init() Can't find child 5053 in scoreboard,Error,jk<N>_init() Can't find child <N> in scoreboard,Error,0.34711936116218567
+openstack,"10.11.21.132,10.11.10.1 ""GET /latest/meta-data/local-ipv4 HTTP/1.1"" status: 200 len: 129 time: 0.0006690",HTTP Status,"<N>,<N> ""GET /latest/meta-data/local-ipv<N> HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.791878342628479
+openssh,Invalid user test2 from 187.141.143.180,Security Alert,Invalid user test<N> from <N>,Security Alert,0.5848461389541626
+synthetic,The 'AuthProxy' module will be retired in version 3.1,Deprecation Warning,The 'AuthProxy' module will be retired in version <N>,Deprecation Warning,0.6953033804893494
+openstack,"10.11.10.1 ""DELETE /v2/54fadb412c4e40cdbaed9335e4c35a9e/servers/af5f7392-f7d4-4298-b647-c98924c64aa1 HTTP/1.1"" status: 204 len: 203 time: 0.2809131",HTTP Status,"<N> ""DELETE /v<N>/<HEX>/servers/<UUID> HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7571761608123779
+linux,connection from 206.196.21.129 (host129.206.196.21.maximumasp.com) at Sat Jul  9 22:53:19 2005,System Notification,connection from <N> (host<N>.maximumasp.com) at Sat Jul  <N> <N>:<N>:<N> <N>,System Notification,0.5645866394042969
+openssh,Invalid user nagios from 187.141.143.180,Security Alert,Invalid user nagios from <N>,Security Alert,0.644921600818634
+synthetic,youcef deleted quotation 60591,User Action,youcef deleted quotation <N>,User Action,0.5762689113616943
+synthetic,0x38c5ef5e 0x5eef0d1e,Unclassified,<N>x<N>c<N>ef<N>e <N>x<N>eef<N>d<N>e,Unclassified,0.7869060635566711
