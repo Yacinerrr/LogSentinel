@@ -121,6 +121,50 @@ def run(df, name, structured, simulate, retry=True):
                 break
     print(f"Terminé : {name}")
 
+
+def report(df, name):
+    d = os.path.join(RUNS_DIR, name)
+    rows = []
+    for i, row in df.reset_index(drop=True).iterrows():
+        p1 = os.path.join(d, f"{i:04d}_1.json")
+        if not os.path.exists(p1):
+            continue
+        with open(p1, encoding="utf-8") as f:
+            r1 = json.load(f)
+        label, _, fail1 = parse_response(r1["raw"])
+        fail2 = fail1
+        p2 = os.path.join(d, f"{i:04d}_2.json")
+        if fail1 and os.path.exists(p2):
+            with open(p2, encoding="utf-8") as f:
+                r2 = json.load(f)
+            label, _, fail2 = parse_response(r2["raw"])
+        rows.append({"source": row["source"], "target": row["target_label"],
+                     "fail1": fail1, "fail2": fail2, "finish": r1["finish"],
+                     "label": label})
+    r = pd.DataFrame(rows)
+    n = len(r)
+    if n == 0:
+        print("Aucune réponse à mesurer.")
+        return
+    f1, f2 = r["fail1"].notna().sum(), r["fail2"].notna().sum()
+    print(f"\n=== {name} : {n} lignes mesurées ===")
+    print(f"Échec de format avant retry : {f1}/{n} = {100*f1/n:.1f} %")
+    print(f"Échec de format après retry : {f2}/{n} = {100*f2/n:.1f} %")
+    print(f"Parsable après retry : {100*(n-f2)/n:.1f} %  (critère : >= 95 %)")
+    print("Raisons d'échec (avant retry) :", r["fail1"].value_counts().to_dict())
+    print("Champ finish :", r["finish"].value_counts().to_dict())
+    groups = [("tout", r),
+              ("réel", r[r["source"] != "synthetic"]),
+              ("synthétique", r[r["source"] == "synthetic"])]
+    for g, sub in groups:
+        if len(sub) == 0:
+            continue
+        ok = (sub["label"] == sub["target"]).sum()
+        valid = sub["fail2"].isna().sum()
+        acc_valid = f"{100*ok/valid:.1f} %" if valid else "n/a"
+        print(f"Accuracy {g:12} : {ok}/{len(sub)} = {100*ok/len(sub):.1f} % (échecs comptés faux)"
+              f" | sur réponses valides : {acc_valid}")
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--set", choices=["fewshot", "tune", "final"], default="tune")
@@ -135,4 +179,6 @@ if __name__ == "__main__":
         df = df.head(a.limit)
     mode = "struct" if a.structured else "free"
     sim = "_sim" if a.simulate else ""
-    run(df, f"{a.set}_{mode}_{a.tag}{sim}", a.structured, a.simulate)
+    name = f"{a.set}_{mode}_{a.tag}{sim}"
+    run(df, name, a.structured, a.simulate)
+    report(df, name)
