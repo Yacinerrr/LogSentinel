@@ -122,16 +122,17 @@ def run(df, name, structured, simulate, retry=True):
     print(f"Terminé : {name}")
 
 if __name__ == "__main__":
-    FAKES = {
-        "ok": '{"label": "Error", "reason": "Technical failure."}',
-        "empty": "",
-        "tronque": '{"label": "Error", "rea',
-        "fence": '```json\n{"label": "Error", "reason": "x"}\n```',
-        "sans_reason": '{"label": "Error"}',
-        "sans_label": '{"reason": "x"}',
-        "hors_taxonomie": '{"label": "Warning", "reason": "x"}',
-        "minuscules": '{"label": "error", "reason": "x"}',
-        "liste": '[{"label": "Error", "reason": "x"}]',
-    }
-    for name, raw in FAKES.items():
-        print(f"{name:15} -> {parse_response(raw)}")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--set", choices=["fewshot", "tune", "final"], default="tune")
+    ap.add_argument("--structured", action="store_true", help="sortie structurée forcée")
+    ap.add_argument("--simulate", action="store_true", help="réponses inventées, sans API")
+    ap.add_argument("--tag", default="v1", help="change-le à chaque version du prompt")
+    ap.add_argument("--limit", type=int, default=None)
+    a = ap.parse_args()
+
+    df = pd.read_csv(f"data/llm_eval/{a.set}.csv")
+    if a.limit:
+        df = df.head(a.limit)
+    mode = "struct" if a.structured else "free"
+    sim = "_sim" if a.simulate else ""
+    run(df, f"{a.set}_{mode}_{a.tag}{sim}", a.structured, a.simulate)
