@@ -6,3 +6,4 @@ data/jobs/
 models/*.joblib
 .pytest_cache/
 .env
+llm_runs/
