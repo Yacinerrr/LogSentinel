@@ -17,7 +17,7 @@ DEFINITIONS:
 - Security Alert: failed authentication, unknown user, anonymous access, possible intrusion, scanner behaviour (client connects without sending identification), too many authentication failures. The word "ALERT" alone is not enough.
 - Critical Error: a service or the whole system is down, a vital dependency is unreachable, or data is lost. The words CRITICAL/FATAL alone are not enough: if only one operation fails, it is Error.
 - Workflow Error: a business rule, ticket, validation, approval or automation step failed (missing field, undefined assignee, forbidden transition). Purely technical failures are Error.
-- Error: a technical operation failed or an anomaly is reported (crash, exception, not found, invalid/unknown/unrecognized value, refused by configuration, network failure) while the system keeps running. Default category for failures.
+- Error: a technical operation failed or an anomaly is reported (crash, exception, not found, invalid/unknown/unrecognized value, inconsistency between two sources, refused by configuration, network failure) while the system keeps running. Default category for failures.
 - Resource Usage: a measured quantity of a machine resource (memory, disk, CPU...) that is used, free, total or limited, with a number and unit. Requested amounts, durations and hardware detected at boot are NOT Resource Usage.
 - Deprecation Warning: a feature, module, API or option is deprecated and WILL be removed or replaced in a future version. Nothing has failed yet.
 - User Action: an explicit successful action by a user (successful login such as "Accepted password", user-requested disconnect, create/modify/download). PAM session opened/closed is NOT User Action.
