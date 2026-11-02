@@ -128,3 +128,49 @@ permettent pas de départager les seuils (écarts inférieurs à un groupe).
   réels dans la bande suspecte) : conservée.
 - Pas encore de courbe précision/couverture pour la baseline TF-IDF : le gain de routage de BERT
   n'est donc pas encore comparé à armes égales.
+
+
+  ## A1.4 : ingénierie du prompt LLM
+
+**Modèle mesuré : `gemini-3.1-flash-lite` (API Gemini gratuite), mesures du 2 novembre 2026.**
+Ce n'est pas DeepSeek R1 : faute de crédits, R1 n'a pas été testé. Les taux ci-dessous ne se transposent pas automatiquement à R1.
+
+### Protocole
+- Trois jeux disjoints : exemples du prompt (10 lignes), réglage `tune` (44), final `final` (108). Le jeu final n'a pas été regardé pendant le réglage, et le prompt n'a pas été modifié après sa mesure.
+- « Difficile » = confiance BERT sous 0,82, ou prédiction BERT fausse.
+- Format attendu : JSON strict `{"label", "reason"}`, un retry (température 0,5), `maxOutputTokens` = 400, température 0 au premier essai.
+- Échec de format : JSON invalide, champ manquant, label hors taxonomie, réponse vide ou tronquée. Un label faux est une erreur d'accuracy, pas de format.
+- Deux séries : sans sortie structurée forcée, puis avec (`responseSchema`).
+
+### Résultats sur `final` (108 lignes)
+
+| | Sans sortie forcée | Avec sortie forcée |
+|---|---|---|
+| Échec de format avant retry | 0/108 (0,0 %) | 0/108 (0,0 %) |
+| Échec de format après retry | 0/108 (0,0 %) | 0/108 (0,0 %) |
+| Réponses coupées (`finish` ≠ STOP) | 0 | 0 |
+| Accuracy totale | 99/108 (91,7 %) | 101/108 (93,5 %) |
+| Accuracy réelle | 58/64 (90,6 %) | 60/64 (93,8 %) |
+| Accuracy synthétique | 41/44 (93,2 %) | 41/44 (93,2 %) |
+
+Critère de la tâche (≥ 95 % parsable, accuracy consignée) : atteint. Le prompt seul donne déjà un format parsable ; la sortie forcée n'apporte pas de gain de format mesurable, et l'écart d'accuracy (2 lignes) est dans le bruit.
+
+### Historique du réglage (`tune`, 44 lignes)
+- `v1` : 0 % d'échec de format, 43/44 (97,7 %). Seule erreur : un log signalant une incohérence entre deux sources, classé System Notification au lieu de Error.
+- `v2` : définition de Error complétée (« inconsistency between two sources », aussi ajoutée à `docs/TAXONOMY.md`). 43/44 aussi : l'erreur réelle est corrigée, mais une ligne synthétique tronquée change de côté. Sur 44 lignes, `v1` et `v2` ne sont pas distinguables ; `v2` est retenu car sa règle découle de la taxonomie.
+
+### Erreurs sur `final`
+Les erreurs se concentrent sur les règles fines de la taxonomie :
+- Matériel au démarrage prédit Resource Usage (`On node 0 totalpages`, `126MB LOWMEM available`, `0MB HIGHMEM available`) : 3 lignes.
+- Lignes tronquées ou sans sens prédites System Notification au lieu d'Unclassified (`Connection to ... est` ×2, `-- MARK --`) : 3 lignes.
+- `fatal: Write failed: Connection reset by peer [preauth]` prédit Security Alert au lieu d'Error : 1 ligne.
+- Scanner de ports (`Did not receive identification string`) prédit System Notification au lieu de Security Alert : 2 lignes, uniquement sans sortie forcée.
+
+### Limites
+- 108 lignes : incertitude d'environ ±5 points sur l'accuracy ; 0 échec de format sur 108 signifie un taux probablement inférieur à 3 %, pas nul.
+- Les logs synthétiques ont été écrits d'après la taxonomie et testés par un LLM : ils sont probablement plus faciles que de vrais logs.
+- Les étiquettes réelles viennent des modèles de log, donc certaines sont discutables (lignes tronquées, cas « à valider » de la taxonomie).
+- Deux variantes proches (`Connection to ... est`) sont dans le même jeu : une même erreur compte deux fois.
+- `tune` a servi au réglage, ses 97,7 % sont optimistes ; la référence est `final`.
+- Gemini 3.1 flash-lite n'est pas R1 : le taux de format de R1 reste à mesurer.
+- Le quota gratuit et des erreurs 503 ont imposé des relances ; elles n'affectent pas les mesures (seules les réponses reçues sont comptées).
