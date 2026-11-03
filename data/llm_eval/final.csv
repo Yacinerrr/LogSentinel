@@ -1,0 +1,109 @@
+source,log_message,target_label,groupe,bert_pred,bert_conf
+synthetic,kernel panic - not syncing: Fatal exception in interrupt,Critical Error,kernel panic - not syncing: Fatal exception in interrupt,System Notification,0.4181613326072693
+linux,On node 0 totalpages: 32430,System Notification,On node <N> totalpages: <N>,Unclassified,0.34326171875
+openstack,[instance: 127e769a-4fe6-4548-93b1-513ac51e0452] Claim successful,System Notification,[instance: <UUID>] Claim successful,User Action,0.46220019459724426
+synthetic,"FATAL: the database cluster at '/opt/odoo/data' is corrupted, server cannot start",Critical Error,"FATAL: the database cluster at '/opt/odoo/data' is corrupted, server cannot start",Critical Error,0.7490414977073669
+openstack,"[instance: 96abccce-8d1f-4e07-b6d1-4b2ab87e23b4] Total vcpu: 16 VCPU, used: 0.00 VCPU",Resource Usage,"[instance: <UUID>] Total vcpu: <N> VCPU, used: <N> VCPU",Resource Usage,0.5763927102088928
+synthetic,User manager1 uploaded file 'contract.docx',User Action,User manager<N> uploaded file 'contract.docx',User Action,0.7435801029205322
+linux,"There is already a security framework initialized, register_security failed.",Error,"There is already a security framework initialized, register_security failed.",System Notification,0.27929046750068665
+openssh,pam_unix(sshd:auth): check pass; user unknown,Security Alert,pam_unix(sshd:auth): check pass; user unknown,Security Alert,0.713188886642456
+synthetic,[4093],Unclassified,[<N>],Unclassified,0.9234310984611511
+openstack,[instance: 63a0d960-70b6-44c6-b606-491478a5cadf] Terminating instance,System Notification,[instance: <UUID>] Terminating instance,System Notification,0.6100826859474182
+synthetic,"CRITICAL: all worker processes of nginx have crashed, application is unavailable",Critical Error,"CRITICAL: all worker processes of nginx have crashed, application is unavailable",Critical Error,0.7582538723945618
+synthetic,kernel panic - not syncing: Out of memory and no killable processes,Critical Error,kernel panic - not syncing: Out of memory and no killable processes,Critical Error,0.6745447516441345
+windows,0000000b CSI Store 3065408 (0x00000000002ec640) initialized,System Notification,<N>b CSI Store <N> (<N>x<N>ec<N>) initialized,System Notification,0.5703996419906616
+synthetic,"Filesystem /srv is corrupted and was remounted read-only, data may be lost",Critical Error,"Filesystem /srv is corrupted and was remounted read-only, data may be lost",Critical Error,0.7435769438743591
+linux,"Dentry cache hash table entries: 16384 (order: 4, 65536 bytes)",System Notification,"Dentry cache hash table entries: <N> (order: <N>, <N> bytes)",System Notification,0.33383867144584656
+synthetic,alice created manufacturing order 47548,User Action,alice created manufacturing order <N>,User Action,0.799394965171814
+openstack,"10.11.10.2 ""GET /v2/e9746973ac574c6b8a9e8857f56a7608/flavors/2 HTTP/1.1"" status: 200 len: 604 time: 0.0573232",HTTP Status,"<N> ""GET /v<N>/<HEX>/flavors/<N> HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.6722791194915771
+synthetic,"CRITICAL: all worker processes of Odoo server have crashed, application is unavailable",Critical Error,"CRITICAL: all worker processes of Odoo server have crashed, application is unavailable",Critical Error,0.7350621819496155
+synthetic,Support for OpenSSL 1.0.2 is deprecated and will be dropped in version 19.0,Deprecation Warning,Support for OpenSSL <N> is deprecated and will be dropped in version <N>,Deprecation Warning,0.8243815898895264
+openssh,Did not receive identification string from 195.154.37.122,Security Alert,Did not receive identification string from <N>,User Action,0.3359473645687103
+openstack,[instance: 96abccce-8d1f-4e07-b6d1-4b2ab87e23b4] Terminating instance,System Notification,[instance: <UUID>] Terminating instance,System Notification,0.5633695721626282
+openssh,Invalid user 0 from 185.190.58.151,Security Alert,Invalid user <N> from <N>,Security Alert,0.6572929620742798
+synthetic,Login successful for user 'youcef' from 197.152.55.233,User Action,Login successful for user 'youcef' from <N>,User Action,0.819056510925293
+linux,getpeername (ftpd): Transport endpoint is not connected,Error,getpeername (ftpd): Transport endpoint is not connected,System Notification,0.2777702808380127
+linux,warning: can't get client address: Connection reset by peer,Error,warning: can't get client address: Connection reset by peer,Error,0.2391137033700943
+linux,notify question section contains no SOA,Error,notify question section contains no SOA,Unclassified,0.24955305457115173
+openssh,input_userauth_request: invalid user cyrus [preauth],Security Alert,input_userauth_request: invalid user cyrus [preauth],Security Alert,0.6789184212684631
+synthetic,Connection to 246.11.218.124 est,Unclassified,Connection to <N> est,System Notification,0.4702492952346802
+linux,mapped 4G/4G trampoline to ffff3000.,System Notification,mapped <N>G/<N>G trampoline to ffff<N>.,Unclassified,0.4522212743759155
+openssh,Invalid user cisco from 103.99.0.122,Security Alert,Invalid user cisco from <N>,Security Alert,0.7073385715484619
+synthetic,Automated action 'create task' failed on transfer 42505: missing responsible,Workflow Error,Automated action 'create task' failed on transfer <N>: missing responsible,Workflow Error,0.694013774394989
+synthetic,Automated action 'create task' failed on invoice 60245: missing warehouse,Workflow Error,Automated action 'create task' failed on invoice <N>: missing warehouse,Workflow Error,0.8006263375282288
+windows,0000000f@2016/9/27:20:40:54.786 CSI perf trace:,System Notification,<N>f@<N>/<N>/<N>:<N>:<N>:<N> CSI perf trace:,Unclassified,0.5638495683670044
+openssh,input_userauth_request: invalid user api [preauth],Security Alert,input_userauth_request: invalid user api [preauth],Security Alert,0.7274307608604431
+openstack,"10.11.21.139,10.11.10.1 ""GET /latest/meta-data/placement/availability-zone HTTP/1.1"" status: 200 len: 120 time: 0.0008299",HTTP Status,"<N>,<N> ""GET /latest/meta-data/placement/availability-zone HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.742892324924469
+synthetic,"AuthProxy.open_session is deprecated, please use PdfBuilder.fetch_records",Deprecation Warning,"AuthProxy.open_session is deprecated, please use PdfBuilder.fetch_records",Deprecation Warning,0.7725592255592346
+windows,Failed to create backup log cab. [HRESULT = 0x80070001 - ERROR_INVALID_FUNCTION],Error,Failed to create backup log cab. [HRESULT = <N>x<N> - ERROR_INVALID_FUNCTION],Critical Error,0.2350260466337204
+openssh,error: Received disconnect from 195.154.37.122: 3: com.jcraft.jsch.JSchException: Auth fail [preauth],Security Alert,error: Received disconnect from <N>: <N>: com.jcraft.jsch.JSchException: Auth fail [preauth],Security Alert,0.533809244632721
+openstack,[instance: 43204226-2f87-4da7-b7ee-4d20cc66e846] Claim successful,System Notification,[instance: <UUID>] Claim successful,User Action,0.41910189390182495
+openstack,"10.11.21.139,10.11.10.1 ""GET /latest/meta-data/security-groups HTTP/1.1"" status: 200 len: 123 time: 0.0008359",HTTP Status,"<N>,<N> ""GET /latest/meta-data/security-groups HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.77220219373703
+synthetic,Support for OpenSSL 1.0.2 is deprecated and will be dropped in version 3.1,Deprecation Warning,Support for OpenSSL <N> is deprecated and will be dropped in version <N>,Deprecation Warning,0.8430988192558289
+openssh,Invalid user guest from 103.99.0.122,Security Alert,Invalid user guest from <N>,Security Alert,0.5967018008232117
+openssh,Invalid user utsims from 112.95.230.3,Security Alert,Invalid user utsims from <N>,Security Alert,0.7280665636062622
+linux,"PCI: PCI BIOS revision 2.10 entry at 0xfc0ce, last bus=1",System Notification,"PCI: PCI BIOS revision <N> entry at <N>xfc<N>ce, last bus=<N>",Unclassified,0.24054856598377228
+synthetic,"Filesystem /var is corrupted and was remounted read-only, data may be lost",Critical Error,"Filesystem /var is corrupted and was remounted read-only, data may be lost",Critical Error,0.7720795273780823
+openssh,Invalid user cheng from 202.100.179.208,Security Alert,Invalid user cheng from <N>,Security Alert,0.5860832929611206
+synthetic,User support downloaded report 'maintenance_summary',User Action,User support downloaded report 'maintenance_summary',User Action,0.7617984414100647
+linux,connection from 82.252.162.81 (lns-vlq-45-tou-82-252-162-81.adsl.proxad.net) at Sat Jun 18 02:08:11 2005,System Notification,connection from <N> (lns-vlq-<N>-tou-<N>-<N>-<N>-<N>.adsl.proxad.net) at Sat Jun <N> <N>:<N>:<N> <N>,System Notification,0.723905086517334
+linux,authentication failure; logname= uid=0 euid=0 tty=NODEVssh ruser= rhost=adsl-70-242-75-179.dsl.ksc2mo.swbell.net,Security Alert,authentication failure; logname= uid=<N> euid=<N> tty=NODEVssh ruser= rhost=adsl-<N>-<N>-<N>-<N>.dsl.ksc<N>mo.swbell.net,Security Alert,0.8083050847053528
+synthetic,Login successful for user 'youcef' from 163.110.104.110,User Action,Login successful for user 'youcef' from <N>,User Action,0.8058698773384094
+synthetic,Received disconnect from 31.137.2.165: 11: disconnected by user,User Action,Received disconnect from <N>: <N>: disconnected by user,User Action,0.47535112500190735
+openssh,fatal: Write failed: Connection reset by peer [preauth],Error,fatal: Write failed: Connection reset by peer [preauth],Security Alert,0.3398045301437378
+linux,126MB LOWMEM available.,System Notification,<N>MB LOWMEM available.,Unclassified,0.5111982822418213
+synthetic,Automated action 'notify manager' failed on maintenance request 47984: missing approver,Workflow Error,Automated action 'notify manager' failed on maintenance request <N>: missing approver,Workflow Error,0.7588621377944946
+synthetic,The 'SyncAgent' module will be retired in version 19.0,Deprecation Warning,The 'SyncAgent' module will be retired in version <N>,Deprecation Warning,0.7954013347625732
+windows,Failed to get next element [HRESULT = 0x800f080d - CBS_E_MANIFEST_INVALID_ITEM],Error,Failed to get next element [HRESULT = <N>x<N>f<N>d - CBS_E_MANIFEST_INVALID_ITEM],Error,0.4014216363430023
+synthetic,admin deleted ticket 3348,User Action,admin deleted ticket <N>,User Action,0.7448287606239319
+openstack,"10.11.21.139,10.11.10.1 ""GET /latest/meta-data/block-device-mapping/ami HTTP/1.1"" status: 200 len: 119 time: 0.2219629",HTTP Status,"<N>,<N> ""GET /latest/meta-data/block-device-mapping/ami HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.6315985918045044
+windows,TrustedInstaller service starts successfully.,System Notification,TrustedInstaller service starts successfully.,User Action,0.460461288690567
+windows,Warning: Unrecognized packageExtended attribute.,Error,Warning: Unrecognized packageExtended attribute.,Deprecation Warning,0.4235658347606659
+linux,irqbalance startup succeeded,System Notification,irqbalance startup succeeded,System Notification,0.49661365151405334
+linux,session closed for user news,System Notification,session closed for user news,User Action,0.40056461095809937
+openssh,Invalid user guest from 5.188.10.180,Security Alert,Invalid user guest from <N>,Security Alert,0.6248365640640259
+linux,0MB HIGHMEM available.,System Notification,<N>MB HIGHMEM available.,Unclassified,0.4810723662376404
+synthetic,Cannot confirm transfer 84748: related quotation is still in state 'draft',Workflow Error,Cannot confirm transfer <N>: related quotation is still in state 'draft',Workflow Error,0.7566092014312744
+linux,connection from 82.252.162.81 (lns-vlq-45-tou-82-252-162-81.adsl.proxad.net) at Sat Jun 18 02:08:10 2005,System Notification,connection from <N> (lns-vlq-<N>-tou-<N>-<N>-<N>-<N>.adsl.proxad.net) at Sat Jun <N> <N>:<N>:<N> <N>,System Notification,0.7354893088340759
+synthetic,manager1 deleted purchase order 90714,User Action,manager<N> deleted purchase order <N>,User Action,0.7815939784049988
+synthetic,-- MARK --,Unclassified,-- MARK --,Unclassified,0.5698465704917908
+synthetic,Connection to 3.180.214.68 est,Unclassified,Connection to <N> est,System Notification,0.3400845229625702
+openstack,"10.11.21.136,10.11.10.1 ""GET /latest/meta-data/placement/availability-zone HTTP/1.1"" status: 200 len: 120 time: 0.2186198",HTTP Status,"<N>,<N> ""GET /latest/meta-data/placement/availability-zone HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7553762793540955
+openstack,"10.11.21.132,10.11.10.1 ""GET /latest/meta-data/reservation-id HTTP/1.1"" status: 200 len: 127 time: 0.0007050",HTTP Status,"<N>,<N> ""GET /latest/meta-data/reservation-id HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.6781455874443054
+synthetic,alice deleted ticket 60566,User Action,alice deleted ticket <N>,User Action,0.7878515720367432
+openssh,Invalid user bssh from 187.141.143.180,Security Alert,Invalid user bssh from <N>,Security Alert,0.708958089351654
+synthetic,1507 4086 3473,Unclassified,<N> <N> <N>,Unclassified,0.7435944676399231
+openstack,"Total usable vcpus: 16, total allocated vcpus: 0",Resource Usage,"Total usable vcpus: <N>, total allocated vcpus: <N>",Resource Usage,0.4624427556991577
+synthetic,The 'SyncAgent' module will be retired in version 17.0,Deprecation Warning,The 'SyncAgent' module will be retired in version <N>,Deprecation Warning,0.8045253753662109
+synthetic,Automated action 'notify manager' failed on sales order 35782: missing customer,Workflow Error,Automated action 'notify manager' failed on sales order <N>: missing customer,Workflow Error,0.7202884554862976
+openssh,Did not receive identification string from 181.214.87.4,Security Alert,Did not receive identification string from <N>,User Action,0.2714613378047943
+openstack,"[instance: af5f7392-f7d4-4298-b647-c98924c64aa1] Total memory: 64172 MB, used: 512.00 MB",Resource Usage,"[instance: <UUID>] Total memory: <N> MB, used: <N> MB",Resource Usage,0.7582322359085083
+openstack,"10.11.21.143,10.11.10.1 ""GET /latest/meta-data/block-device-mapping/ami HTTP/1.1"" status: 200 len: 119 time: 0.2359550",HTTP Status,"<N>,<N> ""GET /latest/meta-data/block-device-mapping/ami HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.6451325416564941
+synthetic,...,Unclassified,...,System Notification,0.39041346311569214
+openstack,"10.11.21.132,10.11.10.1 ""GET /latest/meta-data/ami-launch-index HTTP/1.1"" status: 200 len: 117 time: 0.0007291",HTTP Status,"<N>,<N> ""GET /latest/meta-data/ami-launch-index HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7488916516304016
+synthetic,Login successful for user 'dev02' from 78.228.131.144,User Action,Login successful for user 'dev<N>' from <N>,User Action,0.8272915482521057
+openssh,Invalid user oralce from 187.141.143.180,Security Alert,Invalid user oralce from <N>,Security Alert,0.5819573402404785
+synthetic,c1e9c4fa,Unclassified,c<N>e<N>c<N>fa,Unclassified,0.7275058627128601
+openstack,"[instance: a015cf14-84bb-4156-a48d-7c4824ac7a9d] Total memory: 64172 MB, used: 512.00 MB",Resource Usage,"[instance: <UUID>] Total memory: <N> MB, used: <N> MB",Resource Usage,0.8040622472763062
+openstack,"[instance: 43204226-2f87-4da7-b7ee-4d20cc66e846] Total vcpu: 16 VCPU, used: 0.00 VCPU",Resource Usage,"[instance: <UUID>] Total vcpu: <N> VCPU, used: <N> VCPU",Resource Usage,0.5230686664581299
+synthetic,Assignment rule 'workload balancing' found no eligible user for maintenance request 34029,Workflow Error,Assignment rule 'workload balancing' found no eligible user for maintenance request <N>,Workflow Error,0.8143714070320129
+openssh,Invalid user 0 from 181.214.87.4,Security Alert,Invalid user <N> from <N>,Security Alert,0.7401050925254822
+openstack,HTTP exception thrown: No instances found for any event,Error,HTTP exception thrown: No instances found for any event,System Notification,0.3853911757469177
+synthetic,[2773],Unclassified,[<N>],Unclassified,0.9172835946083069
+openstack,Creating event network-vif-plugged:85754923-baff-45ad-9e35-a3055c898234 for instance 7e7cc42f-3cb9-4d91-804c-f5a32d54f1c5,System Notification,Creating event network-vif-plugged:<UUID> for instance <UUID>,System Notification,0.7099657654762268
+openstack,"10.11.21.132,10.11.10.1 ""GET /latest/meta-data/security-groups HTTP/1.1"" status: 200 len: 123 time: 0.0007679",HTTP Status,"<N>,<N> ""GET /latest/meta-data/security-groups HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.7771274447441101
+windows,SQM: Warning: Failed to upload all unsent reports. [HRESULT = 0x80004005 - E_FAIL],Error,SQM: Warning: Failed to upload all unsent reports. [HRESULT = <N>x<N> - E_FAIL],Error,0.29226869344711304
+openstack,Creating event network-vif-plugged:72791ba0-33ef-44f2-9d88-d7c8f313cb46 for instance a015cf14-84bb-4156-a48d-7c4824ac7a9d,System Notification,Creating event network-vif-plugged:<UUID> for instance <UUID>,System Notification,0.6889951825141907
+linux,PCI: Invalid ACPI-PCI IRQ routing table,Error,PCI: Invalid ACPI-PCI IRQ routing table,Workflow Error,0.19022484123706818
+synthetic,Automated action 'send reminder' failed on manufacturing order 88177: missing currency,Workflow Error,Automated action 'send reminder' failed on manufacturing order <N>: missing currency,Workflow Error,0.7653326392173767
+synthetic,1960 3 1290,Unclassified,<N> <N> <N>,Unclassified,0.7510029077529907
+synthetic,lina created ticket 9239,User Action,lina created ticket <N>,User Action,0.675711452960968
+synthetic,Cannot confirm ticket 75946: related transfer is still in state 'pending',Workflow Error,Cannot confirm ticket <N>: related transfer is still in state 'pending',Workflow Error,0.7967533469200134
+synthetic,"FATAL: the database cluster at '/srv/db' is corrupted, server cannot start",Critical Error,"FATAL: the database cluster at '/srv/db' is corrupted, server cannot start",Critical Error,0.7962185144424438
+linux,Failure registering capabilities with the kernel,Error,Failure registering capabilities with the kernel,Critical Error,0.2592964470386505
+openstack,"Total usable vcpus: 16, total allocated vcpus: 1",Resource Usage,"Total usable vcpus: <N>, total allocated vcpus: <N>",Resource Usage,0.7949329614639282
+synthetic,Received disconnect from 3.30.172.89: 11: disconnected by user,User Action,Received disconnect from <N>: <N>: disconnected by user,User Action,0.4307906925678253
+linux,Transparent bridge - 0000:00:1e.0,System Notification,Transparent bridge - <N>:<N>:<N>e.<N>,Unclassified,0.5194162130355835
+synthetic,kernel: xyz 0xf4adfa22,Unclassified,kernel: xyz <N>xf<N>adfa<N>,Unclassified,0.7758291363716125
+openstack,"10.11.21.139,10.11.10.1 ""GET /latest/meta-data/reservation-id HTTP/1.1"" status: 200 len: 127 time: 0.0009091",HTTP Status,"<N>,<N> ""GET /latest/meta-data/reservation-id HTTP/<N>"" status: <N> len: <N> time: <N>",HTTP Status,0.681553065776825
+synthetic,"SyncAgent.load_config is deprecated, please use CsvImporter.format_currency",Deprecation Warning,"SyncAgent.load_config is deprecated, please use CsvImporter.format_currency",Deprecation Warning,0.8171008229255676
