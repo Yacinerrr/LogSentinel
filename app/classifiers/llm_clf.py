@@ -2,6 +2,7 @@ import logging
 import re
 import time
 from openai import OpenAI
+from app.masking import mask
 from app.text import normalize
 from .base import Prediction
 
@@ -41,14 +42,24 @@ class LLMClassifier:
         return self._client
 
     def predict(self, source: str, message: str) -> Prediction:
-        key = f"{source}|{normalize(message)}"
+        # PRIVACY: nothing below this block may use `message`, only `safe`.
+        try:
+            res = mask(message, ips=self.s.mask_ips, usernames=self.s.mask_usernames)
+        except Exception:
+            log.exception("masking failed; LLM not called")      # fail closed
+            return Prediction("Unclassified", "fallback", 0.0)
+        safe = res.text[: self.s.llm_max_chars]
+        if res.changed:
+            log.info("masked before LLM: %s", res.counts)         # kinds and counts only, never values
+
+        key = f"{source}|{normalize(safe)}"
         cached = self.db.cache_get(key)
         if cached:
             return Prediction(cached, "llm", 0.9)
         if not self.s.deepseek_api_key:
             return Prediction("Unclassified", "fallback", 0.0)
 
-        prompt = PROMPT.format(cats=", ".join(self.categories), source=source, log=message)
+        prompt = PROMPT.format(cats=", ".join(self.categories), source=source, log=safe)
         for attempt in range(self.s.llm_retries + 1):
             try:
                 resp = self.client.chat.completions.create(
