@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     llm_model: str = "deepseek-reasoner"
     llm_timeout_s: float = 60.0
     llm_retries: int = 2
+    llm_max_chars: int = 2000       # truncate AFTER masking
+    mask_ips: bool = True
+    mask_usernames: bool = True
 
     bert_model_name: str = "all-MiniLM-L6-v2"
     bert_model_path: str = "models/bert_clf.joblib"
