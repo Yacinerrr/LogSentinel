@@ -1,0 +1,101 @@
+log_message,target_label
+Deprecation notice: the legacy OAuth callback parameter 'redirect_uri_v1' will be retired in API release 9.0; migrate to 'callback_url'.,Deprecation Warning
+2026-10-28T08:14:02Z WARN [spring-web] JdbcTemplate.queryForInt() is obsolete and is scheduled for removal in the next major release.,Deprecation Warning
+Python DeprecationWarning: datetime.utcnow() will no longer be supported; use an explicit UTC-aware datetime instead.,Deprecation Warning
+The Kubernetes manifest field 'spec.externalID' is deprecated and will be dropped by the next controller generation.,Deprecation Warning
+NOTICE: nginx directive 'http2' in this context is deprecated; configure HTTP/2 through the listen parameters in a future-compatible setup.,Deprecation Warning
+Node.js DEP0097: Using domain-based error handling is deprecated and will be removed from a later runtime version.,Deprecation Warning
+ERP extension warning: legacy stock valuation hook _get_price() is deprecated; override _compute_value() for future releases.,Deprecation Warning
+"2026-10-28 09:02:44,031 WARNING [sqlalchemy.orm] Query.get() is considered legacy and may be removed in a subsequent major version.",Deprecation Warning
+OpenStack notice: the v2 compatibility endpoint is deprecated and will be withdrawn after the next service upgrade.,Deprecation Warning
+The Windows management API marks Win32_OperatingSystem.InstallDate as deprecated; use the replacement CIM property in future scripts.,Deprecation Warning
+WARNING: Docker Compose key 'links' is deprecated and is expected to disappear from a future Compose specification.,Deprecation Warning
+The application config option 'enable_old_cache' is obsolete and will be removed after the 2027.1 release.,Deprecation Warning
+DeprecationWarning: passing a string to the 'encoding' argument is deprecated; provide a codec object in the next compatible update.,Deprecation Warning
+2026-10-28T10:31:17Z WARN [hibernate] The legacy Criteria API is deprecated and will be removed in a future ORM version.,Deprecation Warning
+The cloud SDK's InstanceMetadata.fetch_v1() method is deprecated; new integrations should call fetch_metadata_v2().,Deprecation Warning
+PHP Runtime Notice: each() is deprecated and is planned for removal in a future PHP release.,Deprecation Warning
+The 'classic_scheduler' setting is deprecated; scheduled jobs will use the unified queue engine in a later version.,Deprecation Warning
+WARNING [pandas] The 'date_parser' argument is deprecated and will be removed in a future release; use 'date_format'.,Deprecation Warning
+The LDAP connector's simple_bind() interface is deprecated and will be withdrawn in the next major connector update.,Deprecation Warning
+2026-10-28 11:45:00 WARN [gradle] The compile configuration is deprecated and will be removed in Gradle 10.,Deprecation Warning
+Legacy Terraform argument ' vpc_classic_link' is deprecated and will no longer be accepted by a future provider version.,Deprecation Warning
+The application warns that XML-RPC integration is deprecated and will be phased out in favor of the JSON API.,Deprecation Warning
+Ruby warning: Fixnum is deprecated; use Integer because the compatibility alias will be removed in a later release.,Deprecation Warning
+The monitoring agent's 'push_interval_ms' property is deprecated and will be replaced by 'scrape_period' in the next release.,Deprecation Warning
+2026-10-28T12:20:09Z WARNING [kafka-client] The old consumer rebalance callback is deprecated and is scheduled for removal in version 6.0.,Deprecation Warning
+2026-10-28 08:03:11 INFO [portal.auth] Nadia signed in successfully using the company identity provider.,User Action
+Account 'mrivera' changed the notification preference to weekly digest.,User Action
+INFO [sharepoint-sync] User devon downloaded archive 'quarterly_assets.zip'.,User Action
+Operator Lena acknowledged the maintenance banner in the admin console.,User Action
+2026-10-28T08:52:47Z INFO [git-service] rpatel pushed commit 8f4c2a1 to branch feature/audit-export.,User Action
+User jchen renamed dashboard 'Fleet Overview' to 'Vehicle Health'.,User Action
+2026-10-28 09:17:33 INFO [erp.documents] Priya attached 'supplier_terms.docx' to purchase record PO-7842.,User Action
+The account holder marcus changed the profile language from English to French.,User Action
+INFO [cloud-console] User elise launched a new development workspace.,User Action
+Technician r.hassan added a note to work order WO-62018.,User Action
+User 'tnguyen' moved folder 'Invoices/April' into 'Finance/Archive'.,User Action
+2026-10-28 10:08:51 INFO [crm] Gabriel updated the contact phone number for account AC-1834.,User Action
+The administrator 'slopez' manually triggered the monthly inventory reconciliation.,User Action
+INFO [document-center] Amira previewed contract CN-9027 in the browser.,User Action
+2026-10-28T10:42:06Z INFO [gitlab] User k.owens approved merge request !418.,User Action
+User 'farid.b' changed the owner of project 'edge-metrics' to team platform-ops.,User Action
+INFO [backup-ui] Morgan requested an on-demand snapshot for workstation WS-14.,User Action
+2026-10-28 11:05:26 INFO [erp.accounting] Fatima posted journal entry JE-2026-441.,User Action
+User pgreen signed out from the customer support dashboard at their request.,User Action
+2026-10-28T11:32:58Z INFO [object-store] Account buildbot-user created bucket 'nightly-artifacts'.,User Action
+Operator D.Kim exported the selected audit events to 'review_batch.json'.,User Action
+INFO [wiki] User nora edited page 'Deployment Runbook' and saved the revision.,User Action
+User 'omar.s' submitted a new equipment inspection form for asset EQ-731.,User Action
+7f2a9c1d-6b84-4d0e-a951-3c8e2f10b7aa,Unclassified
+== worker 6041 ==,Unclassified
+0x8b71d2e4 :: 0x00af19c3,Unclassified
+qzv|17|mK4|r2,Unclassified
+A7C1-9E02-44BF,Unclassified
+node{delta} => 0x19 / 0x2c,Unclassified
+----- segment boundary 003 -----,Unclassified
+7 0 7 1 0 0 4 9,Unclassified
+## TRACE TOKEN: bQ9xL2,Unclassified
+0x00007ffea12c 0x000000000000,Unclassified
+blk_04f8c1|slot_9|kappa,Unclassified
+::ffff:0:0:0:0:0,Unclassified
+r=6d2a; s=91bf; t=003e,Unclassified
+<<< 2F 8A C1 00 7D >>>,Unclassified
+segment_id=QX-771 / fragment=09,Unclassified
+mN4pR7_v2__x,Unclassified
+00000000-0000-0000-0000-000000000000,Unclassified
+~cache~ 3A9F-11C0 ~cache~,Unclassified
+idx:?? / ref: 0x71c / aux: --,Unclassified
+AUX_STREAM[blue|17|K],Unclassified
+F1F0 00A3 7C2D 991E,Unclassified
+.../??/node/??/...,Unclassified
+tkn_6c09a8f4e2,Unclassified
+----- [opaque payload omitted] -----,Unclassified
+sshd[2481]: Authentication refused for account 'backupsvc' from 198.51.100.74; no matching public key was accepted.,Security Alert
+2026-10-28T08:19:31Z ALERT [pam_unix] Repeated login verification failures for user 'svc-build' from host 203.0.113.42.,Security Alert
+OpenSSH: client at 198.51.100.119 disconnected after sending an unknown account name during pre-authentication.,Security Alert
+2026-10-28 09:11:06 securityd: Possible credential stuffing detected against the admin sign-in endpoint.,Security Alert
+PAM: account 'oracle' exceeded the permitted authentication retry count from 203.0.113.87.,Security Alert
+The gateway rejected an unauthenticated request to access the privileged management interface.,Security Alert
+sshd[9317]: Public-key authentication failed for user 'releasebot' from 192.0.2.144 port 41820.,Security Alert
+2026-10-28T10:06:40Z WARN [identity-service] Unknown principal 'ops-root' attempted to obtain an access token.,Security Alert
+Authentication monitor flagged a suspected password-spraying attempt targeting multiple staff accounts.,Security Alert
+sshd: Too many authentication attempts from 203.0.113.158; terminating pre-authentication connection.,Security Alert
+2026-10-28 11:14:55 auditd: User 'guest-temp' attempted privileged access without an authenticated session.,Security Alert
+Kerberos pre-authentication failed for principal svc_backup@CORP.LOCAL from workstation 192.0.2.88.,Security Alert
+Nginx access guard reported a likely directory traversal probe from source 198.51.100.51.,Security Alert
+2026-10-28 08:27:44 ERROR [java.nio] Unable to parse configuration file '/etc/ledger/worker.yaml': unexpected tab at line 38.,Error
+psycopg2.errors.UndefinedColumn: column 'shipment_zone' does not exist in the current query.,Error
+2026-10-28T08:46:13Z ERROR [containerd] Failed to unpack image layer: archive contains an invalid header.,Error
+Python traceback: ValueError: invalid literal for int() with base 10: '4O2'.,Error
+systemd[1]: Could not reload telemetry-agent.service because its unit file contains an unknown directive 'RestartSecund'.,Error
+2026-10-28 09:36:02 ERROR [node:worker] TypeError: Cannot read properties of undefined (reading 'tenantId').,Error
+OpenStack nova-compute: Image metadata references an unsupported disk format 'qcowX'.,Error
+ERP connector exception: failed to serialize field 'delivery_window' as a valid timestamp.,Error
+2026-10-28T10:18:29Z ERROR [redis-client] Connection handshake ended with protocol mismatch; operation was not completed.,Error
+Windows Event 1001: Application crash report could not be written because the dump path is invalid.,Error
+Apache module loader: Unknown directive 'ProxyPassReversee' in /etc/httpd/conf.d/proxy.conf.,Error
+2026-10-28 11:09:48 ERROR [kafka-producer] Record encoding failed: schema field 'region_code' has incompatible type.,Error
+Docker build failed while resolving the base image manifest due to malformed digest syntax.,Error
+Java SQLException: Prepared statement parameter 6 was not bound before execution.,Error
+2026-10-28T12:41:03Z ERROR [backup-agent] Checksum verification failed for temporary object 'chunk_0197.part'.,Error

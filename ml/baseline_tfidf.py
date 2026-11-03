@@ -12,6 +12,7 @@ from sklearn.metrics import classification_report, f1_score
 from sklearn.model_selection import StratifiedGroupKFold, train_test_split
 from sklearn.pipeline import make_pipeline
 from common import normalize, load, SEED
+from split import train_sans_test
 
 
 
@@ -68,7 +69,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("csv")
     a = ap.parse_args()
-    df = load(a.csv)
+    df = train_sans_test(a.csv)
     print(len(df), "lignes,", df["groupe"].nunique(), "groupes")
     for col in ["log_message", "groupe"]:
         f1, rapport = eval_random(df, col)

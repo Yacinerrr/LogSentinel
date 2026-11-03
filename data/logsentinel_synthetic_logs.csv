@@ -1,0 +1,97 @@
+log_message,target_label
+"192.0.2.14 - - [20/Oct/2026:08:14:02 +0200] ""GET /api/v1/devices HTTP/1.1"" 200 1842",HTTP Status
+"2026-10-20T08:14:07Z web-02 nginx_access: 203.0.113.8 ""POST /auth/session HTTP/1.1"" 302 418 ""-"" ""Mozilla/5.0""",HTTP Status
+"10.4.2.19 - - [20/Oct/2026:08:15:11 +0200] ""GET /assets/app.css HTTP/1.1"" 304 0",HTTP Status
+"edge-gw access_log: ""PATCH /v3/orders/ORD-842 HTTP/1.1"" status=409 bytes=271 duration=0.043s client=198.51.100.44",HTTP Status
+"2026/10/20 08:16:23 [access] 203.0.113.17 - ""DELETE /v1/cache/items/7 HTTP/1.1"" 204 0",HTTP Status
+api-gateway | 2026-10-20 08:17:09 | PUT /api/profile/391 HTTP/1.1 | 200 | 96 B | 18 ms,HTTP Status
+"198.51.100.9 - - [20/Oct/2026:08:18:55 +0200] ""POST /checkout HTTP/1.1"" 500 932",HTTP Status
+"access: client=10.0.5.8 request=""GET /healthz HTTP/1.1"" code=503 size=76 rt=2.003",HTTP Status
+"2026-10-20 08:20:03,014 INFO [http-nio-8080-exec-4] ""GET /reports/monthly?format=csv HTTP/1.1"" 200",HTTP Status
+"172.16.8.3 - - [20/Oct/2026:08:21:44] ""HEAD /downloads/archive.tar.gz HTTP/1.1"" 206 0",HTTP Status
+"haproxy[2184]: 192.0.2.72:51422 [20/Oct/2026:08:22:10.381] api_front api_backend/srv3 404 0 12 -- ""GET /v2/unknown HTTP/1.1""",HTTP Status
+2026-10-20T08:23:50+02:00 traefik access method=OPTIONS path=/api/items status=204 client=192.0.2.6,HTTP Status
+"203.0.113.61 - - [20/Oct/2026:08:24:32 +0200] ""GET /images/logo.svg HTTP/1.1"" 403 153",HTTP Status
+"uvicorn.access INFO: 10.1.1.4:59312 - ""POST /v1/predict HTTP/1.1"" 201 Created",HTTP Status
+"20/Oct/2026:08:26:01 +0200 ""GET /robots.txt HTTP/1.1"" status: 404 len: 22 time: 0.006",HTTP Status
+"proxy/access 2026-10-20T08:27:18Z client=10.9.0.2 ""POST /v2/import HTTP/2"" -> 413 (payload too large)",HTTP Status
+"192.0.2.41 - - [20/Oct/2026:08:28:02 +0200] ""GET / HTTP/1.1"" 301 169 ""-"" ""curl/8.1.0""",HTTP Status
+IIS W3SVC2 2026-10-20 08:29:44 10.0.0.12 GET /catalog/item?id=51 - 200 0 0 34,HTTP Status
+"gateway.access: ""POST /login HTTP/1.1"" 401 532 upstream=auth-service elapsed=11ms",HTTP Status
+2026-10-20T08:31:07Z [access] client=198.51.100.18 method=GET uri=/metrics protocol=HTTP/1.1 status=200 response_bytes=2451,HTTP Status
+Oct 20 08:14:02 auth01 sshd[1931]: Failed password for root from 203.0.113.77 port 51432 ssh2,Security Alert
+2026-10-20T08:14:17Z sshd[842]: Invalid user deployer from 198.51.100.91 port 60122,Security Alert
+pam_unix(sshd:auth): authentication failure; rhost=192.0.2.88 user=backup,Security Alert
+"WARN login_service: account ""mira"" does not exist; authentication rejected for source 10.22.1.7",Security Alert
+"Oct 20 08:16:31 mail-gw ftpd[1140]: ANONYMOUS FTP LOGIN FROM 192.0.2.50, nobody",Security Alert
+sshd[2199]: input_userauth_request: invalid user oracle [preauth] from 203.0.113.8,Security Alert
+2026-10-20 08:18:42 securityd ALERT: repeated credential failures detected for svc-admin from 198.51.100.22,Security Alert
+Oct 20 08:19:06 sshd[881]: Disconnecting authenticating user root 203.0.113.5 port 44810: Too many authentication failures [preauth],Security Alert
+auth.log: message repeated 6 times: [ Failed password for invalid user guest from 192.0.2.12 port 40221 ssh2 ],Security Alert
+2026-10-20T08:21:13Z sshd[611]: Did not receive identification string from 198.51.100.63,Security Alert
+"nginx-auth: suspicious login attempt for non-existent principal ""ops-temp""; source=203.0.113.119",Security Alert
+Oct 20 08:23:44 host sshd[1712]: error: Received disconnect from 192.0.2.19: Auth fail [preauth],Security Alert
+auditd: user authentication denied for account=administrator origin=10.0.3.55 method=password,Security Alert
+2026/10/20 08:25:39 [sshd] Failed publickey for deploy from 198.51.100.67 port 39210 ssh2,Security Alert
+"security.monitor WARNING: possible brute-force activity; 37 rejected sign-in attempts against account ""root""",Security Alert
+"login[204]: UNKNOWN USER ""postgres"" on ttyS1; login refused",Security Alert
+sshd[1920]: Failed none for invalid user test from 192.0.2.71 port 55012 ssh2 [preauth],Security Alert
+Oct 20 08:31:44 ids[443]: possible unauthorized access pattern: repeated probes against /admin from 198.51.100.90,Security Alert
+2026-10-20T08:14:02Z CRIT postgres[711]: database cluster is unreachable; all application requests are blocked and service entered failed state,Critical Error
+Oct 20 08:14:39 node-1 kernel: Kernel panic - not syncing: unrecoverable page fault; system halted,Critical Error
+systemd[1]: payment-api.service failed to start after repeated retries; unit is now inactive and checkout is unavailable,Critical Error
+FATAL storage: primary volume /dev/sda2 disappeared; filesystem cannot be mounted and host boot aborted,Critical Error
+2026-10-20 08:16:51 ERROR inventory: transaction journal corrupted; recovery failed and inventory service refuses to start,Critical Error
+cluster-manager ALERT: quorum lost across all nodes; control plane is down and no workloads can be scheduled,Critical Error
+Oct 20 08:18:27 mysqld[904]: InnoDB: unrecoverable corruption detected in system tablespace; database shutdown complete,Critical Error
+2026-10-20T08:19:03Z CRITICAL: certificate authority key store is unreadable; authentication platform cannot initialize,Critical Error
+backupd FATAL: snapshot metadata and recovery catalog are lost; no valid restore point remains for the production dataset,Critical Error
+"kernel: VFS: unable to mount root fs on unknown-block(0,0); boot sequence terminated",Critical Error
+2026-10-20 08:21:49 service-supervisor: message queue broker exited and restart limit reached; every dependent service is offline,Critical Error
+Oct 20 08:22:16 CRIT redis[1218]: append-only file corruption prevents startup; cache cluster unavailable to all clients,Critical Error
+db-router ERROR: all database replicas are unreachable; the application has entered maintenance mode and cannot serve traffic,Critical Error
+2026-10-20T08:24:55Z FATAL filesystem: metadata damage detected on the root partition; remount failed and host services stopped,Critical Error
+orchestrator[77]: primary node lost; failover did not complete and the production API is now unavailable,Critical Error
+Oct 20 08:26:33 systemd[1]: emergency.target reached after root disk I/O failures; normal operating mode cannot continue,Critical Error
+CRITICAL ml-platform: model registry database is irrecoverable; inference workers cannot load any production model,Critical Error
+2026-10-20 08:28:40Z storage-controller: both data paths failed; critical dataset is inaccessible and dependent services stopped,Critical Error
+FATAL: encryption key database is damaged beyond recovery; stored customer records cannot be decrypted,Critical Error
+Oct 20 08:31:59 kernel: Out of memory: killed init; system stability lost and node reboot required,Critical Error
+"2026-10-20 08:14:02,441 ERROR approvals.workflow: purchase order PO-1842 cannot advance; no approver is assigned to the finance step",Workflow Error
+"ticket-engine[502]: escalation rule ""P1_after_15m"" could not resolve an owner for case INC-7742",Workflow Error
+Oct 20 08:15:47 invoice-service: validation rejected invoice INV-22018 because required field customer_id is empty,Workflow Error
+2026-10-20T08:16:30Z WARN onboarding: transition from DOCUMENTS_PENDING to APPROVED is forbidden by the configured state machine,Workflow Error
+CRM automation: lead LEAD-491 was not converted; qualification policy requires a verified business email,Workflow Error
+purchase-flow ERROR: approval step skipped unexpectedly; order 77301 has no manager sign-off recorded,Workflow Error
+2026/10/20 08:18:12 rule-engine[93]: discount policy failed for cart C-882; requested 45% exceeds the permitted 20%,Workflow Error
+case-management: cannot close ticket CS-1044 while the mandatory resolution summary is blank,Workflow Error
+2026-10-20 08:20:51Z payroll.pipeline: run blocked because employee record E-0091 lacks an assigned cost center,Workflow Error
+WARN workflow.executor: shipment SH-501 cannot enter DISPATCHED; quality inspection has not been approved,Workflow Error
+approval-service ERROR: expense claim EX-7312 rejected by policy because receipt attachment is required above the configured limit,Workflow Error
+"Oct 20 08:23:19 workflowd: retry exhausted for task ""renewal_review""; no reviewer matches the region and product rules",Workflow Error
+2026-10-20T08:24:41Z subscription.lifecycle: cancellation step aborted; account ACC-91 still has an unresolved active dispute,Workflow Error
+ERP rules: goods receipt GR-611 failed validation because received quantity exceeds the outstanding purchase order quantity,Workflow Error
+2026-10-20 08:26:04 ERROR claims: reimbursement R-880 cannot be submitted until the claimant confirms the declaration,Workflow Error
+workflow/fulfillment WARN: allocation for order O-552 stopped; every eligible warehouse violates the delivery-region rule,Workflow Error
+Oct 20 08:28:29 billing-orchestrator: invoice INV-9007 remains unposted because the fiscal period is closed,Workflow Error
+2026-10-20T08:29:33Z user-provisioning: role assignment rejected; requested role conflicts with the employee onboarding policy,Workflow Error
+service-desk: SLA escalation for ticket SD-183 failed because the second-level support group is not configured,Workflow Error
+"2026-10-20 08:31:57,006 ERROR returns.workflow: refund RMA-704 cannot be approved; return window expired under policy RET-30",Workflow Error
+2026-10-20T08:14:02Z ERROR image-worker[411]: unable to decode uploaded PNG; invalid chunk length at offset 4096,Error
+"Oct 20 08:14:29 app-node-3 python[881]: KeyError: configuration entry ""region_code"" is missing",Error
+"WARN config-loader: unrecognized parameter ""cache_revalidation_mode""; ignoring invalid setting",Error
+Oct 20 08:17:48 worker[1320]: connection reset by peer while fetching metadata from internal catalog,Error
+"2026-10-20T08:18:53Z ERROR plugin-manager: module ""geo_lookup"" could not be loaded (ImportError: symbol not found)",Error
+"db-client WARNING: invalid timestamp ""2026-19-42T27:80:00""; record skipped during ingestion",Error
+"2026/10/20 08:20:11 compiler[992]: unresolved reference ""normalize_payload"" in module ingestion.pipeline",Error
+"ERROR: failed to open package archive; HRESULT=0x80070002, CBS_E_INVALID_PACKAGE",Error
+Oct 20 08:22:08 logrotate: ALERT exited abnormally with status [1]; main web service remains running,Error
+"2026-10-20 08:22:56Z scheduler: task metadata contains an unknown execution mode ""burstly""",Error
+WARN network-client: getpeername() returned ENOTCONN; transport endpoint is not connected,Error
+api-worker[206]: HTTP exception thrown: no instances found for the requested event type,Error
+2026-10-20T08:25:30Z ERROR parser: malformed YAML near line 63; expected a mapping key,Error
+kernel: invalid ACPI-PCI IRQ routing table detected; continuing with fallback configuration,Error
+"Oct 20 08:27:12 package-indexer: unrecognized packageExtended attribute ""vendor.signature.v9""",Error
+"2026-10-20 08:28:45,912 ERROR cache: failed to refresh object 0x7fa1; upstream returned an unreadable payload",Error
+worker-7 | ERROR | retry operation exhausted: local socket closed before response was received,Error
+2026-10-20T08:31:52Z WARNING dns-resolver: notify question section contains no SOA record; response ignored,Error

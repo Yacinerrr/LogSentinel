@@ -81,3 +81,50 @@ Le texte normalisé fait un peu moins bien que le brut, mais l'écart est infér
 py -m pip install scikit-learn pandas
 py -m ml.baseline_tfidf data/labeled_logs.csv
 ```
+
+
+## A1.2 : classifieur BERT-embedding + seuil de confiance
+
+### Méthode
+- Embeddings `BAAI/bge-small-en-v1.5` (texte brut du log), cachés par hash du contenu.
+- Classifieur : LogisticRegression (`class_weight="balanced"`), même type que la baseline.
+- Évaluation : StratifiedGroupKFold (5 plis, même SEED et mêmes groupes que A1.1).
+- Courbe précision/couverture : confiances « hors entraînement » (chaque log est
+  prédit par un modèle qui n'a vu ni lui ni son groupe), calculée sur les logs réels uniquement.
+
+### Comparaison avec la baseline (macro-F1, classes réelles)
+| Modèle | macro-F1 réelles |
+|---|---|
+| TF-IDF + LogReg (A1.1) | 0,668 ± 0,130 |
+| MiniLM | 0,702 ± 0,083 |
+| **bge-small (retenu)** | **0,714 ± 0,113** |
+| mpnet | 0,642 ± 0,101 |
+
+bge-small dépasse la baseline en moyenne, mais l'écart (+0,046) est inférieur à
+l'écart-type entre plis : on ne peut pas parler de gain net sur ce seul critère.
+mpnet, plus gros et plus lent (22 min de calcul contre 7,5), fait moins bien que la baseline.
+
+### Seuil retenu : 0,82
+Couverture 36,8 % des logs réels, précision 99,2 % sur les logs acceptés
+(graphique : `docs/precision_coverage.png`). Les logs sous le seuil sont à envoyer à l'étape suivante (LLM).
+
+Justification : la précision chute brutalement sous 0,79 (87,5 % à 0,78, 96,8 % à 0,79).
+0,82 laisse une marge au-dessus de cette falaise. Entre 0,80 et 0,85, les données ne
+permettent pas de départager les seuils (écarts inférieurs à un groupe).
+
+### Limites
+- **Échantillon effectif réduit** : 522 groupes distincts pour 10 000 logs réels.
+  La falaise de précision vient de 2 groupes seulement (`jk2_init() Found child ...` : 537 logs,
+  `Received disconnect ... Bye Bye [preauth]` : 331 logs), tous deux de vrai label
+  System Notification, prédits Error et User Action.
+- **Couverture dominée par les classes faciles** (mesure au seuil 0,80) : HTTP Status 93 %
+  et Security Alert 82 % des logs acceptés, contre 16 % pour Error et pour System Notification
+  (67 % des logs réels à elles deux).
+- **User Action** : 10 logs réels seulement, classe surtout apprise via le synthétique, aucun
+  log réel accepté au seuil 0,80. L'étiquette des logs `Received disconnect` est discutable
+  (System Notification ou User Action) ; non re-étiqueté dans cette tâche.
+- Le seuil est choisi sur les mêmes données que la courbe : légèrement optimiste.
+- La classe Unclassified n'existe que dans le synthétique et n'a pas posé de problème (2 logs
+  réels dans la bande suspecte) : conservée.
+- Pas encore de courbe précision/couverture pour la baseline TF-IDF : le gain de routage de BERT
+  n'est donc pas encore comparé à armes égales.

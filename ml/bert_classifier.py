@@ -9,6 +9,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 from sklearn.model_selection import StratifiedGroupKFold
 import matplotlib.pyplot as plt
+from split import train_sans_test
 
 
 
@@ -131,7 +132,7 @@ def plot_curve(rows, path, chosen=None):
 
 
 if __name__ == "__main__":
-    df = load(DATA)
+    df = train_sans_test(DATA)
     X = get_embeddings(df["log_message"].tolist(), "BAAI/bge-small-en-v1.5")
     pred, conf = collect_predictions(df, X)
 
@@ -150,6 +151,18 @@ if __name__ == "__main__":
     # chiffres du seuil retenu (à recopier dans docs/RESULTS.md)
     t, c, p = min(rows, key=lambda r: abs(r[0] - THRESHOLD))
     print(f"\nSeuil retenu {THRESHOLD:.2f} : couverture {c:.1%}, précision {p:.1%}")
+        # précision à plusieurs niveaux de couverture visés
+    print("\ncouverture visée   seuil   couverture   précision")
+    for cible_cov in (0.50, 0.60, 0.65, 0.70, 0.80):
+        ok = [r for r in rows if r[1] >= cible_cov]
+        if not ok:
+            print(f"{cible_cov:.0%}               inatteignable")
+            continue
+        t, c, p = max(ok, key=lambda r: r[0])
+        print(f"{cible_cov:.0%}               {t:.2f}    {c:6.1%}      {p:6.1%}")
+
+
+    
 
     plot_curve(rows, "docs/precision_coverage.png", chosen=THRESHOLD)
     print("Graphique sauvegardé dans docs/precision_coverage.png")
