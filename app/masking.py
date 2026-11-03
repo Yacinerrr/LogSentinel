@@ -37,6 +37,8 @@ _CARD = re.compile(r"\b(?:\d[ -]?){12,18}\d\b")
 _PHONE_INTL = re.compile(r"(?<!\w)\+\d{1,3}[\s.-]?\(?\d{1,4}\)?(?:[\s.-]?\d{2,4}){2,4}(?!\d)")
 _PHONE_DZ = re.compile(r"(?<!\d)0[567](?:[\s.-]?\d{2}){4}(?!\d)")
 _OCTET = r"(?:25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)"
+_HOST_KV = re.compile(r"(?i)\b(rhost|host(?:name)?)=([^\s;,\]]+)")      # rhost=1-2-3-4.isp.net, may encode the IP
+_IP_HOST_PAREN = re.compile(r"(<IP>)\s*\([A-Za-z0-9.-]+\.[A-Za-z]{2,}\)")   # "from 1.2.3.4 (name.isp.net)"
 _IPV4 = re.compile(rf"\b{_OCTET}(?:\.{_OCTET}){{3}}\b")
 _USER = re.compile(
     r"(?i)\b(invalid user |failed password for (?:invalid user )?|accepted (?:password|publickey) for "
@@ -47,6 +49,10 @@ _TOKEN = re.compile(r"\b(?=[A-Za-z0-9_]*\d)(?=[A-Za-z0-9_]*[A-Za-z])[A-Za-z0-9_]
 def _luhn(number: str) -> bool:
     digits = [int(c) for c in number if c.isdigit()]
     if not 13 <= len(digits) <= 19:
+        return False
+    # Real card networks start with 3-6, and a card is never one repeated digit. Without this, kernel
+    # lines like "BIOS-e820: 0000000000000000" pass the Luhn check by accident (found on real Loghub data).
+    if digits[0] not in (3, 4, 5, 6) or len(set(digits)) < 2:
         return False
     total = 0
     for i, d in enumerate(reversed(digits)):
@@ -81,8 +87,10 @@ def mask(text: str, *, ips: bool = True, usernames: bool = True) -> MaskResult:
     text = _CARD.sub(card, text)
     apply("phone", _PHONE_INTL, "<PHONE>")
     apply("phone", _PHONE_DZ, "<PHONE>")
+    apply("host", _HOST_KV, r"\1=<HOST>")          # before IPs: the value may embed one
     if ips:
         apply("ip", _IPV4, "<IP>")
+        apply("host", _IP_HOST_PAREN, r"\1 (<HOST>)")
     if usernames:
         apply("username", _USER, r"\1<USER>")
     apply("token", _TOKEN, "<TOKEN>")

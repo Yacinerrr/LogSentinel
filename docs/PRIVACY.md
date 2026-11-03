@@ -20,9 +20,10 @@ Nothing else: no database content, no other logs, no API keys, no users.
 | `Bearer`/`Basic` tokens | `Bearer abc123...` | `Bearer <TOKEN>` |
 | `password=`, `secret:`, `api_key=`, `token=`, ... values | `password=Hunter2` | `password=<SECRET>` |
 | Emails | `a@b.com` | `<EMAIL>` |
-| Credit cards (Luhn-valid only) | `4111 1111 1111 1111` | `<CARD>` |
+| Credit cards (13-19 digits, Luhn-valid, starting with 3-6, not one repeated digit) | `4111 1111 1111 1111` | `<CARD>` |
 | Phone numbers (international `+..`, Algerian mobile `05/06/07..`) | `+213 555 12 34 56` | `<PHONE>` |
 | IPv4 addresses (`MASK_IPS`, default on) | `10.0.0.5` | `<IP>` |
+| `rhost=` / `host=` values, and the hostname after an IP: `from 1.2.3.4 (name.isp.net)` | `rhost=1-2-3-4.isp.net` | `rhost=<HOST>` |
 | Usernames in common patterns (`MASK_USERNAMES`, default on) | `Failed password for root`, `Invalid user bob`, `user=alice` | `<USER>` |
 | Long token-like strings (32+ letters/digits/_) | `54fadb41...` | `<TOKEN>` |
 
@@ -35,7 +36,7 @@ A log that changes is logged as `masked before LLM: {kind: count}`. **Only kinds
 - **Hostile input:** all patterns are linear-time; a test feeds 50,000-character adversarial strings.
 
 ## What is NOT covered (be honest in the report)
-- Hostnames and domain names (`rhost=host.example.com`), file paths, free-text names ("John Smith called").
+- Hostnames and domain names **outside** the patterns above (e.g. `getaddrinfo for ns.example.com`), file paths, free-text names ("John Smith called").
 - IPv6 addresses, MAC addresses.
 - Secrets with no recognizable shape (a password in plain prose: "the password is blue42").
 - Non-Latin phone formats other than the two listed.

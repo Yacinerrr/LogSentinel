@@ -28,6 +28,8 @@ CASES = [
     ("github token", "push with ghp_" + "a1B2c3D4e5" * 4, "ghp_a1B2", "<API_KEY>"),
     ("url credentials", "db at postgres://admin:s3cr3t@db.internal:5432/app", "s3cr3t", "postgres://<CREDENTIALS>@db.internal"),
     ("valid card", "payment card 4111 1111 1111 1111 declined", "4111 1111 1111 1111", "<CARD>"),
+    ("amex test card", "card 3782 822463 10005 expired", "3782 822463 10005", "<CARD>"),
+    ("mastercard test card", "charge 5500000000000004 failed", "5500000000000004", "<CARD>"),
     ("intl phone", "call +213 555 12 34 56 now", "555 12 34 56", "<PHONE>"),
     ("dz mobile", "sms to 0555 12 34 56 sent", "0555 12 34 56", "<PHONE>"),
     ("ip", "Failed from 192.168.1.77 port 22", "192.168.1.77", "<IP>"),
@@ -35,6 +37,9 @@ CASES = [
     ("invalid user", "Invalid user webmaster from 173.234.31.186", "webmaster", "Invalid user <USER> from <IP>"),
     ("pam user", "session opened for user cyrus by (uid=0)", "cyrus", "session opened for user <USER>"),
     ("kv user", "authentication failure; ruser= rhost=x user=alice", "alice", "user=<USER>"),
+    ("rhost with embedded ip", "authentication failure; rhost=5.36.59.76.dynamic-dsl-ip.omantel.net.om  user=root", "omantel", "rhost=<HOST>"),
+    ("rhost dashed ip", "authentication failure; ruser= rhost=220-135-151-1.hinet-ip.hinet.net  user=root", "hinet", "rhost=<HOST>"),
+    ("ip with hostname in parens", "connection from 24.54.76.216 (24-54-76-216.bflony.adelphia.net) at Sat", "adelphia", "<IP> (<HOST>)"),
     ("hex token", "tenant 54fadb412c4e40cdbaed9335e4c35a9e created", "54fadb412c4e40cdbaed9335e4c35a9e", "<TOKEN>"),
 ]
 
@@ -65,6 +70,9 @@ def test_private_key_complete_and_truncated():
     "User User123 logged in.",
     "invoice 1234 5678 9012 3456 paid",            # 16 digits but fails Luhn: not a card
     "check pass; user unknown",
+    "BIOS-e820: 0000000000000000 - 00000000000a0000 (usable)",      # real Loghub line: all zeros passes Luhn
+    "BIOS-e820: 0000000000100000 - 000000007fff0000 (usable)",
+    "timestamp 1478114573123456 recorded",                           # starts with 1: not a card network
 ])
 def test_normal_logs_are_untouched(text):
     r = mask(text)
@@ -89,7 +97,7 @@ def test_idempotent():
 
 def test_hostile_inputs_are_fast():
     nasty = ["a" * 50_000, "password=" * 5_000, "1 " * 20_000, "-----BEGIN PRIVATE KEY-----" + "x" * 50_000,
-             "user=" * 10_000, ("1." * 3) * 10_000, "a1" * 30_000, "(" * 20_000]
+             "user=" * 10_000, "<IP> (" * 10_000, "<IP> (" + "a." * 20_000, "rhost=" * 10_000, ("1." * 3) * 10_000, "a1" * 30_000, "(" * 20_000]
     for s in nasty:
         t0 = time.time()
         mask(s)
